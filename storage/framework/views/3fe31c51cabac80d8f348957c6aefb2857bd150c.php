@@ -1,9 +1,9 @@
 <?php $__env->startSection('title'); ?> <?php echo e(__('Dashboard')); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
-
     <body data-topbar="dark" data-layout="horizontal">
     <?php $__env->stopSection(); ?>
     <?php $__env->startSection('content'); ?>
+       <iframe id="JotFormIFrame-221297017399160" title="BTC Scheduling" src="https://hipaa.jotform.com/app/221297017399160?appEmbedded=1" style="height:600px; width:375px; border: 0;"></iframe>
         <?php if($role == 'admin'): ?>
             <?php echo $__env->make('layouts.admin-dashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php elseif($role == 'doctor'): ?>
