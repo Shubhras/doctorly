@@ -5,6 +5,7 @@
     <?php $__env->stopSection(); ?>
     <?php $__env->startSection('content'); ?>
         <!-- start page title -->
+    <div style=display:none;>    
         <?php $__env->startComponent('components.breadcrumb'); ?>
             <?php $__env->slot('title'); ?> Transaction List <?php $__env->endSlot(); ?>
             <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
@@ -68,6 +69,7 @@
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
+    </div>    
     <?php $__env->stopSection(); ?>
     <?php $__env->startSection('script'); ?>
         <!-- Plugins js -->

@@ -26,18 +26,18 @@
                         @if ($doctor && $doctor_info)
                             {{ __('Update Doctor Details') }}
                         @else
-                            {{ __('Add New Doctor') }}
+                            {{ __('Agregar Nuevo Staff') }}
                         @endif
                     </h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('doctor') }}">{{ __('Doctors') }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('doctor') }}">{{ __('Staff') }}</a></li>
                             <li class="breadcrumb-item active">
                                 @if ($doctor && $doctor_info)
                                     {{ __('Update Doctor Details') }}
                                 @else
-                                    {{ __('Add New Doctor') }}
+                                    {{ __('Agregar Nuevo Staff') }}
                                 @endif
                             </li>
                         </ol>
@@ -68,7 +68,7 @@
                     <a href="{{ url('doctor') }} ">
                         <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
                             <i
-                                class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Back to Doctor List') }}
+                                class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Back to Staff List') }}
                         </button>
                     </a>
                 @endif
@@ -78,7 +78,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <blockquote>{{ __('Basic Information') }}</blockquote>
+                        <blockquote>{{ __('Información básica') }}</blockquote>
                         <form id="addtime" action="@if ($doctor && $doctor_info) {{ url('doctor/' . $doctor->id) }} @else {{ route('doctor.store') }} @endif" method="post" enctype="multipart/form-data">
                             @csrf
                             @if ($doctor && $doctor_info)
@@ -88,7 +88,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('First Name ') }}<span
+                                            <label class="control-label">{{ __('Primer nombre ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control @error('first_name') is-invalid @enderror"
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Title ') }}<span
+                                            <label class="control-label">{{ __('Título ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('title') is-invalid @enderror"
                                                 name="title" id="title" tabindex="5" value="@if ($doctor && $doctor_info){{ $doctor_info->title }}@elseif(old('title')){{ old('title') }}@endif"
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Experience ') }}<span
+                                            <label class="control-label">{{ __('Experiencia ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control @error('experience') is-invalid @enderror"
@@ -149,42 +149,42 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label d-block">{{ __("Doctor available days ") }}<span
+                                            <label class="control-label d-block">{{ __("Días disponibles ") }}<span
                                                     class="text-danger">*</span></label>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                                     value="1" name="sun" {{ old('sun') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox1">Sun</label>
+                                                <label class="form-check-label" for="inlineCheckbox1">Dom</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
                                                     value="1" name="mon" {{ old('mon') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox2">Mon</label>
+                                                <label class="form-check-label" for="inlineCheckbox2">Lun</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
                                                     value="1" name="tue" {{ old('tue') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox3">Tue</label>
+                                                <label class="form-check-label" for="inlineCheckbox3">Mar</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
                                                     value="1" name="wen" {{ old('wen') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox4">Wen</label>
+                                                <label class="form-check-label" for="inlineCheckbox4">Mier</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox5"
                                                     value="1" name="thu" {{ old('thu') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox5">Thu</label>
+                                                <label class="form-check-label" for="inlineCheckbox5">Jue</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
                                                     value="1" name="fri" {{ old('fri') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox6">Fri</label>
+                                                <label class="form-check-label" for="inlineCheckbox6">Vier</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox7"
                                                     value="1" name="sat" {{ old('sat') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox7">Sat</label>
+                                                <label class="form-check-label" for="inlineCheckbox7">Sab</label>
                                             </div>
                                             @error('mon')
                                                 <span class="error d-block " role="alert">
@@ -195,7 +195,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 form-group">
-                                            <label class="control-label">{{ __('Slots Time (In Minute) ') }}<span
+                                            <label class="control-label">{{ __('Tiempo (en minutos) ') }}<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control select2 @error('slot_time') is-invalid @enderror"
                                                 name="slot_time" id="slot_time">
@@ -218,11 +218,11 @@
                                             <div class='repeater mb-4'>
                                                 <div data-repeater-list="TimeSlot" class="form-group">
 
-                                                    <label>{{ __('Available Time ') }}<span
+                                                    <label>{{ __('Tiempo disponibles ') }}<span
                                                             class="text-danger">*</span></label>
                                                     <div data-repeater-item class="mb-3 row">
                                                         <div class="col-md-5 col-6">
-                                                            <label class="label-control">From:</label>
+                                                            <label class="label-control">Desde:</label>
                                                             <div class="input-group">
                                                                 <input type="time" name="from"
                                                                     class="form-control timecount timepicker @error('TimeSlot.*.from') is-invalid @enderror"
@@ -235,7 +235,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 col-6">
-                                                            <label class="label-control">To:</label>
+                                                            <label class="label-control">Hasta:</label>
                                                             <div class="input-group">
                                                                 <input type="time" name="to"
                                                                     class="form-control  @error('TimeSlot.*.to') is-invalid @enderror"
@@ -257,7 +257,7 @@
                                                 </div>
                                                 <p class="para error d-none"></p>
                                                 <input data-repeater-create type="button" class="btn btn-primary"
-                                                    value="Add Time" onclick="change()" />
+                                                    value="Agregar Tiempo" onclick="change()" />
 
                                             </div>
                                         </div>
@@ -266,7 +266,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Last Name ') }}<span
+                                            <label class="control-label">{{ __('Apellido ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control @error('last_name') is-invalid @enderror"
@@ -281,7 +281,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Contact Number ') }}<span
+                                            <label class="control-label">{{ __('Teléfono ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="tel" class="form-control @error('mobile') is-invalid @enderror"
                                                 name="mobile" id="patientMobile" tabindex="4"
@@ -296,7 +296,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Degree ') }}<span
+                                            <label class="control-label">{{ __('Grado ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('degree') is-invalid @enderror"
                                                 name="degree" id="degree" tabindex="6" value="@if ($doctor && $doctor_info){{ $doctor_info->degree }}@elseif(old('degree')){{ old('degree') }}@endif"
@@ -310,7 +310,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Fees ') }}<span
+                                            <label class="control-label">{{ __('Tarifa ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('fees') is-invalid @enderror"
                                                 name="fees" id="fees" tabindex="6" value="@if ($doctor && $doctor_info){{ $doctor_info->fees }}@elseif(old('fees')){{ old('fees') }}@endif"
@@ -324,7 +324,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Profile Photo ') }}<span
+                                            <label class="control-label">{{ __('Foto de perfil ') }}<span
                                                     class="text-danger">*</span></label>
                                             <img class="@error('profile_photo') is-invalid @enderror"
                                                 src="@if ($doctor && $doctor_info && $doctor->profile_photo != 'noImage.png') {{ URL::asset('storage/images/users/' . $doctor->profile_photo) }}  @else {{ URL::asset('assets/images/users/noImage.png') }} @endif" id="profile_display" onclick="triggerClick()"
@@ -349,7 +349,7 @@
                                         @if ($doctor && $doctor_info)
                                             {{ __('Update Details') }}
                                         @else
-                                            {{ __('Add New Doctor') }}
+                                            {{ __('Agregar Nuevo Staff') }}
                                         @endif
                                     </button>
                                 </div>

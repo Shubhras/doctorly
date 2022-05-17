@@ -12,13 +12,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-user-circle mr-2"></i>{{ __('Doctors') }} <div class="arrow-down">
+                                <!-- <i class="bx bx-user-circle mr-2"></i>{{ __('Doctors') }} <div class="arrow-down"> -->
+                                <i class="bx bx-user-circle mr-2"></i>{{ __('Staff') }} <div class="arrow-down">
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
-                                <a href="{{ url('doctor') }}" class="dropdown-item">{{ __('List of Doctors') }}</a>
+                                <!-- <a href="{{ url('doctor') }}" class="dropdown-item">{{ __('List of Doctors') }}</a> -->
+                                <a href="{{ url('doctor') }}" class="dropdown-item">{{ __('List of Staff') }}</a>
                                 <a href="{{ route('doctor.create') }}"
-                                    class="dropdown-item">{{ __('Add New Doctor') }}</a>
+                                    class="dropdown-item">{{ __('Add New Staff') }}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

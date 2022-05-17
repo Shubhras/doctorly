@@ -97,14 +97,14 @@ class PatientController extends Controller
                 'age' => 'required|numeric',
                 'address' => 'required',
                 'gender' => 'required',
-                'height' => 'required',
-                'b_group' => 'required',
-                'pulse' => 'required',
-                'allergy' => 'required',
-                'weight' => 'required',
-                'b_pressure' => 'required',
-                'respiration' => 'required',
-                'diet' => 'required',
+                // 'height' => 'required',
+                // 'b_group' => 'required',
+                // 'pulse' => 'required',
+                // 'allergy' => 'required',
+                // 'weight' => 'required',
+                // 'b_pressure' => 'required',
+                // 'respiration' => 'required',
+                // 'diet' => 'required',
                 'profile_photo' => 'image|mimes:jpg,png,jpeg,gif,svg|max:500'
             ]);
             if ($request->profile_photo != null) {
@@ -129,7 +129,7 @@ class PatientController extends Controller
                     ->attach($patient);
                 $validatedData['user_id'] = $patient->id;
                 $this->patient_info->create($validatedData);
-                $this->medical_info->create($validatedData);
+                //$this->medical_info->create($validatedData);
                 return redirect('patient')->with('success', 'Patient created successfully!');
             } catch (Exception $e) {
                 return redirect('patient')->with('error', 'Something went wrong!!! ' . $e->getMessage());
@@ -173,6 +173,7 @@ class PatientController extends Controller
                         'pending_bill' => $pending_bill
                     ];
                     return view('patient.patient-profile', compact('user', 'role', 'patient', 'patient_info', 'medical_Info', 'data', 'appointments', 'prescriptions', 'invoices'));
+                    //return view('patient.patient-profile', compact('user', 'role', 'patient', 'patient_info', 'data', 'appointments', 'prescriptions', 'invoices'));
                 } else {
                     return redirect('/')->with('error', 'Patient information  not found, update patient information');
                 }
@@ -231,15 +232,15 @@ class PatientController extends Controller
                 'email' => 'required|email',
                 'age' => 'required|numeric',
                 'address' => 'required',
-                'gender' => 'required',
-                'height' => 'required',
-                'b_group' => 'required',
-                'pulse' => 'required',
-                'allergy' => 'required',
-                'weight' => 'required',
-                'b_pressure' => 'required',
-                'respiration' => 'required',
-                'diet' => 'required',
+                // 'gender' => 'required',
+                // 'height' => 'required',
+                // 'b_group' => 'required',
+                // 'pulse' => 'required',
+                // 'allergy' => 'required',
+                // 'weight' => 'required',
+                // 'b_pressure' => 'required',
+                // 'respiration' => 'required',
+                // 'diet' => 'required',
                 'profile_photo'=>'image|mimes:jpg,png,jpeg,gif,svg|max:500'
             ]);
             try {
@@ -278,32 +279,32 @@ class PatientController extends Controller
                         $patient_info->user_id = $patient->id;
                         $patient_info->save();
                     }
-                    $medical_info = MedicalInfo::where('user_id', '=', $patient->id)->first();
-                    if($medical_info == null){
-                        $medical_info = new MedicalInfo();
-                        $medical_info->height = $request->height;
-                        $medical_info->b_group = $request->b_group;
-                        $medical_info->pulse = $request->pulse;
-                        $medical_info->allergy = $request->allergy;
-                        $medical_info->weight = $request->weight;
-                        $medical_info->b_pressure = $request->b_pressure;
-                        $medical_info->respiration = $request->respiration;
-                        $medical_info->diet = $request->diet;
-                        $medical_info->user_id = $patient->id;
-                        $medical_info->save();
-                    }
-                    else{
-                        $medical_info->height = $request->height;
-                        $medical_info->b_group = $request->b_group;
-                        $medical_info->pulse = $request->pulse;
-                        $medical_info->allergy = $request->allergy;
-                        $medical_info->weight = $request->weight;
-                        $medical_info->b_pressure = $request->b_pressure;
-                        $medical_info->respiration = $request->respiration;
-                        $medical_info->diet = $request->diet;
-                        $medical_info->user_id = $patient->id;
-                        $medical_info->save();
-                    }
+                    // $medical_info = MedicalInfo::where('user_id', '=', $patient->id)->first();
+                    // if($medical_info == null){
+                    //     $medical_info = new MedicalInfo();
+                    //     $medical_info->height = $request->height;
+                    //     $medical_info->b_group = $request->b_group;
+                    //     $medical_info->pulse = $request->pulse;
+                    //     $medical_info->allergy = $request->allergy;
+                    //     $medical_info->weight = $request->weight;
+                    //     $medical_info->b_pressure = $request->b_pressure;
+                    //     $medical_info->respiration = $request->respiration;
+                    //     $medical_info->diet = $request->diet;
+                    //     $medical_info->user_id = $patient->id;
+                    //     $medical_info->save();
+                    // }
+                    // else{
+                    //     $medical_info->height = $request->height;
+                    //     $medical_info->b_group = $request->b_group;
+                    //     $medical_info->pulse = $request->pulse;
+                    //     $medical_info->allergy = $request->allergy;
+                    //     $medical_info->weight = $request->weight;
+                    //     $medical_info->b_pressure = $request->b_pressure;
+                    //     $medical_info->respiration = $request->respiration;
+                    //     $medical_info->diet = $request->diet;
+                    //     $medical_info->user_id = $patient->id;
+                    //     $medical_info->save();
+                    // }
                 if ($role == 'patient') {
                     return redirect('/')->with('success', 'Profile updated successfully!');
                 } else {

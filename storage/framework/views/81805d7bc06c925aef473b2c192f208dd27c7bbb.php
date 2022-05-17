@@ -1,4 +1,5 @@
 <!-- start page title -->
+<div style=display:none;>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -399,6 +400,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- end row -->
 <?php /**PATH /var/www/html/doctorly/resources/views/layouts/admin-dashboard.blade.php ENDPATH**/ ?>

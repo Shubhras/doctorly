@@ -6,9 +6,9 @@
     <?php $__env->startSection('content'); ?>
         <!-- start page title -->
         <?php $__env->startComponent('components.breadcrumb'); ?>
-            <?php $__env->slot('title'); ?> Doctor List <?php $__env->endSlot(); ?>
+            <?php $__env->slot('title'); ?> Staff <?php $__env->endSlot(); ?>
             <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
-            <?php $__env->slot('li_2'); ?> Doctors <?php $__env->endSlot(); ?>
+            <?php $__env->slot('li_2'); ?> Staff <?php $__env->endSlot(); ?>
         <?php echo $__env->renderComponent(); ?>
         <!-- end page title -->
         <div class="row">
@@ -19,7 +19,7 @@
                         <?php if($role != 'patient' && $role != 'receptionist'): ?>
                             <a href=" <?php echo e(route('doctor.create')); ?> ">
                                 <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('New Doctor')); ?>
+                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('Staff')); ?>
 
                                 </button>
                             </a>
@@ -28,13 +28,13 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th><?php echo e(__('Sr. No')); ?></th>
-                                    <th><?php echo e(__('Title')); ?></th>
-                                    <th><?php echo e(__('Name')); ?></th>
-                                    <th><?php echo e(__('Contact No')); ?></th>
-                                    <th><?php echo e(__('Email')); ?></th>
+                                    <th><?php echo e(__('#')); ?></th>
+                                    <th><?php echo e(__('Título')); ?></th>
+                                    <th><?php echo e(__('Nombre')); ?></th>
+                                    <th><?php echo e(__('Teléfono')); ?></th>
+                                    <th><?php echo e(__('E-Mail')); ?></th>
                                     <?php if($role != 'patient'): ?>
-                                        <th><?php echo e(__('Option')); ?></th>
+                                        <th><?php echo e(__('Acción')); ?></th>
                                     <?php endif; ?>
                                 </tr>
                             </thead>

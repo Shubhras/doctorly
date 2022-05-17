@@ -7,9 +7,9 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Patient List @endslot
+            @slot('title') Pacientes @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Patients @endslot
+            @slot('li_2') Paciente @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">
@@ -18,18 +18,18 @@
                     <div class="card-body">
                         <a href=" {{ route('patient.create') }} ">
                             <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('New Patient') }}
+                                <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Pacientes') }}
                             </button>
                         </a>
                         <table class="table table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>{{ __('Sr. No') }}</th>
-                                    <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Contact No') }}</th>
-                                    <th>{{ __('Email') }}</th>
-                                    <th>{{ __('Option') }}</th>
+                                    <th>{{ __('#') }}</th>
+                                    <th>{{ __('Nombre') }}</th>
+                                    <th>{{ __('Teléfono') }}</th>
+                                    <th>{{ __('E-Mail') }}</th>
+                                    <th>{{ __('Acción') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

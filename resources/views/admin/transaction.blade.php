@@ -6,6 +6,7 @@
     @endsection
     @section('content')
         <!-- start page title -->
+    <div style=display:none;>    
         @component('components.breadcrumb')
             @slot('title') Transaction List @endslot
             @slot('li_1') Dashboard @endslot
@@ -68,6 +69,7 @@
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
+    </div>    
     @endsection
     @section('script')
         <!-- Plugins js -->

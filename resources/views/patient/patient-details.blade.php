@@ -19,18 +19,18 @@
                         @if ($patient && $patient_info && $medical_info)
                             {{ __('Update Patient Details') }}
                         @else
-                            {{ __('Add New Patient') }}
+                            {{ __('Agregar Nuevo Paciente') }}
                         @endif
                     </h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('patient') }}">{{ __('Patients') }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('patient') }}">{{ __('Pacientes') }}</a></li>
                             <li class="breadcrumb-item active">
                                 @if ($patient)
                                     {{ __('Update Patient Details') }}
                                 @else
-                                    {{ __('Add New Patient') }}
+                                    {{ __('Agregar Nuevo Paciente') }}
                                 @endif
                             </li>
                         </ol>
@@ -71,7 +71,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <blockquote>{{ __('Basic Information') }}</blockquote>
+                        <blockquote>{{ __('Información básica') }}</blockquote>
                         <form action="@if ($patient ) {{ url('patient/' . $patient->id) }} @else {{ route('patient.store') }} @endif" method="post" enctype="multipart/form-data">
                             @csrf
                             @if ($patient )
@@ -81,7 +81,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('First Name ') }}<span
+                                            <label class="control-label">{{ __('Primer nombre ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control @error('first_name') is-invalid @enderror"
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="formmessage">{{ __('Gender ') }}<span
+                                            <label for="formmessage">{{ __('Género ') }}<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control @error('gender') is-invalid @enderror" tabindex="3"
                                                 name="gender">
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Current Address ') }}<span
+                                            <label class="control-label">{{ __('Direccion actual ') }}<span
                                                     class="text-danger">*</span></label>
                                             <textarea id="formmessage" name="address" tabindex="7"
                                                 class="form-control @error('address') is-invalid @enderror" rows="3"
@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Last Name ') }}<span
+                                            <label class="control-label">{{ __('Apellido ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('last_name') is-invalid @enderror"
                                                 tabindex="2" name="last_name" id="LastName" value="@if ($patient){{ old('last_name', $patient->last_name) }}@elseif(old('last_name')){{ old('last_name') }}@endif"
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Age ') }}<span
+                                            <label class="control-label">{{ __('Edad ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('age') is-invalid @enderror"
                                                 tabindex="4" name="age" id="patientAge" value="@if ($patient && $patient_info ){{ old('age', $patient_info->age) }}@elseif(old('age')){{ old('age') }}@endif"
@@ -174,7 +174,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Contact Number ') }}<span
+                                            <label class="control-label">{{ __('Teléfono ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="tel" class="form-control @error('mobile') is-invalid @enderror"
                                                 tabindex="6" name="mobile" id="patientMobile"
@@ -189,7 +189,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Profile Photo ') }}</label>
+                                            <label class="control-label">{{ __('Foto de perfil ') }}</label>
                                             <img class="@error('profile_photo') is-invalid @enderror "
                                                 src="@if ($patient && $patient->profile_photo != null){{ URL::asset('storage/images/users/' . $patient->profile_photo) }}@else{{ URL::asset('assets/images/users/noImage.png') }}@endif" onclick="triggerClick()"
                                                 data-toggle="tooltip" data-placement="top"
@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <blockquote>{{ __('Medical Information') }}</blockquote>
+                            <!-- <blockquote>{{ __('Medical Information') }}</blockquote>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="row">
@@ -346,14 +346,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">
                                         @if ($patient && $patient_info && $medical_info)
                                             {{ __('Update Patient Details') }}
                                         @else
-                                            {{ __('Add New Patient') }}
+                                            {{ __('Agregar Nuevo Paciente') }}
                                         @endif
                                     </button>
                                 </div>

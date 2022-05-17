@@ -22,7 +22,7 @@
                         @if ($receptionist)
                             {{ __('Update Receptionist Details') }}
                         @else
-                            {{ __('Add New Receptionist') }}
+                            {{ __('Agregar Nueva Recepcionista') }}
                         @endif
                     </h4>
                     <div class="page-title-right">
@@ -75,7 +75,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <blockquote>{{ __('Basic Information') }}</blockquote>
+                        <blockquote>{{ __('Información básica') }}</blockquote>
                         <form action="@if ($receptionist) {{ url('receptionist/' . $receptionist->id) }} @else {{ route('receptionist.store') }} @endif" method="post" enctype="multipart/form-data">
                             @csrf
                             @if ($receptionist)
@@ -85,7 +85,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('First Name ') }}<span
+                                            <label class="control-label">{{ __('Primer nombre ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control @error('first_name') is-invalid @enderror" tabindex="1"
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Doctor ') }}<span
+                                            <label class="control-label">{{ __('Staff ') }}<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control select2 @error('doctor') is-invalid @enderror"
                                                 name="doctor[]" id="doctor" multiple="multiple">
@@ -134,7 +134,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Last Name ') }}<span
+                                            <label class="control-label">{{ __('Apellido ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control @error('last_name') is-invalid @enderror"
                                                 tabindex="2" name="last_name" id="lastname" value="@if ($receptionist){{ $receptionist->last_name }}@elseif(old('last_name')){{ old('last_name') }}@endif"
@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Contact Number ') }}<span
+                                            <label class="control-label">{{ __('Teléfono ') }}<span
                                                     class="text-danger">*</span></label>
                                             <input type="tel" class="form-control @error('mobile') is-invalid @enderror"
                                                 tabindex="4" name="mobile" id="patientMobile"
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
-                                            <label class="control-label">{{ __('Profile Photo ') }}</label>
+                                            <label class="control-label">{{ __('Foto de perfil ') }}</label>
                                             <img class="@error('profile_photo') is-invalid @enderror"
                                                 src="@if ($receptionist && $receptionist->profile_photo != null){{ URL::asset('storage/images/users/' . $receptionist->profile_photo) }}@else{{ URL::asset('assets/images/users/noImage.png') }}@endif" id="profile_display" onclick="triggerClick()"
                                                 data-toggle="tooltip" data-placement="top"
@@ -187,7 +187,7 @@
                                         @if ($receptionist)
                                             {{ __('Update Details') }}
                                         @else
-                                            {{ __('Add New Receptionist') }}
+                                            {{ __('Agregar Nueva Recepcionista') }}
                                         @endif
                                     </button>
                                 </div>

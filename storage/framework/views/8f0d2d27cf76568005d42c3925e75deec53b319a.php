@@ -1,71 +1,72 @@
-@extends('layouts.master-layouts')
-@section('title') {{ __('List of Receptionists') }} @endsection
-@section('body')
+<?php $__env->startSection('title'); ?> <?php echo e(__('List of Receptionists')); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
 
     <body data-topbar="dark" data-layout="horizontal">
-    @endsection
-    @section('content')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('content'); ?>
         <!-- start page title -->
-        @component('components.breadcrumb')
-            @slot('title') Recepcionistas @endslot
-            @slot('li_1') Dashboard @endslot
-            @slot('li_2') Recepcionistas @endslot
-        @endcomponent
+        <?php $__env->startComponent('components.breadcrumb'); ?>
+            <?php $__env->slot('title'); ?> Recepcionistas <?php $__env->endSlot(); ?>
+            <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
+            <?php $__env->slot('li_2'); ?> Recepcionistas <?php $__env->endSlot(); ?>
+        <?php echo $__env->renderComponent(); ?>
         <!-- end page title -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        @if ($role == 'admin ')
-                            <a href=" {{ route('receptionist.create') }} ">
+                        <?php if($role == 'admin '): ?>
+                            <a href=" <?php echo e(route('receptionist.create')); ?> ">
                                 <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('New Receptionist') }}
+                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('New Receptionist')); ?>
+
                                 </button>
                             </a>
-                        @endif
+                        <?php endif; ?>
                         <table class="table table-bordered dt-responsive nowrap "
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>{{ __('#') }}</th>
-                                    <th>{{ __('Nombre') }}</th>
-                                    <th>{{ __('Teléfono') }}</th>
-                                    <th>{{ __('E-Mail') }}</th>
-                                    <th>{{ __('Acción') }}</th>
+                                    <th><?php echo e(__('#')); ?></th>
+                                    <th><?php echo e(__('Nombre')); ?></th>
+                                    <th><?php echo e(__('Teléfono')); ?></th>
+                                    <th><?php echo e(__('E-Mail')); ?></th>
+                                    <th><?php echo e(__('Acción')); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (session()->has('page_limit'))
-                                    @php
+                                <?php if(session()->has('page_limit')): ?>
+                                    <?php
                                         $per_page = session()->get('page_limit');
-                                    @endphp
-                                @else
-                                    @php
+                                    ?>
+                                <?php else: ?>
+                                    <?php
                                         $per_page = Config::get('app.page_limit');
-                                    @endphp
-                                @endif
-                                @php
+                                    ?>
+                                <?php endif; ?>
+                                <?php
                                     $currentpage = $receptionists->currentPage();
-                                @endphp
-                                @foreach ($receptionists as $receptionist)
+                                ?>
+                                <?php $__currentLoopData = $receptionists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $receptionist): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td>{{ $loop->index + 1 + $per_page * ($currentpage - 1) }}</td>
+                                        <td><?php echo e($loop->index + 1 + $per_page * ($currentpage - 1)); ?></td>
                                         <td>
-                                            <a href="{{ url('receptionist/' . $receptionist->id) }} ">{{ $receptionist->first_name }}
-                                                {{ $receptionist->last_name }}</a>
+                                            <a href="<?php echo e(url('receptionist/' . $receptionist->id)); ?> "><?php echo e($receptionist->first_name); ?>
+
+                                                <?php echo e($receptionist->last_name); ?></a>
                                         </td>
-                                        <td>{{ $receptionist->mobile }}</td>
-                                        <td>{{ $receptionist->email }}</td>
+                                        <td><?php echo e($receptionist->mobile); ?></td>
+                                        <td><?php echo e($receptionist->email); ?></td>
                                         <td>
-                                            @if ($role == 'admin')
-                                                <a href="{{ url('receptionist/' . $receptionist->id) }}">
+                                            <?php if($role == 'admin'): ?>
+                                                <a href="<?php echo e(url('receptionist/' . $receptionist->id)); ?>">
                                                     <button type="button"
                                                         class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                                         title="View Profile">
                                                         <i class="mdi mdi-eye"></i>
                                                     </button>
                                                 </a>
-                                                <a href="{{ url('receptionist/' . $receptionist->id . '/edit') }}">
+                                                <a href="<?php echo e(url('receptionist/' . $receptionist->id . '/edit')); ?>">
                                                     <button type="button"
                                                         class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                                         title="Update Profile">
@@ -75,45 +76,46 @@
                                                 <a href="javascript:void(0)">
                                                     <button type="button"
                                                         class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
-                                                        title="Deactivate Profile" data-id="{{ $receptionist->id }}"
+                                                        title="Deactivate Profile" data-id="<?php echo e($receptionist->id); ?>"
                                                         id="delete-receptionist">
                                                         <i class="mdi mdi-trash-can"></i>
                                                     </button>
                                                 </a>
-                                            @elseif($role == 'doctor')
-                                                <a href="{{ url('receptionist-view/' . $receptionist->id) }}">
+                                            <?php elseif($role == 'doctor'): ?>
+                                                <a href="<?php echo e(url('receptionist-view/' . $receptionist->id)); ?>">
                                                     <button type="button"
                                                         class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                                         title="View Profile">
                                                         <i class="mdi mdi-eye"></i>
                                                     </button>
                                                 </a>
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                         <div class="col-md-12 text-center mt-3">
                             <div class="d-flex justify-content-start">
-                                Showing {{ $receptionists->firstItem() }} to {{ $receptionists->lastItem() }} of
-                                {{ $receptionists->total() }} entries
+                                Showing <?php echo e($receptionists->firstItem()); ?> to <?php echo e($receptionists->lastItem()); ?> of
+                                <?php echo e($receptionists->total()); ?> entries
                             </div>
                             <div class="d-flex justify-content-end">
-                                {{ $receptionists->links() }}
+                                <?php echo e($receptionists->links()); ?>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
-    @endsection
-    @section('script')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('script'); ?>
         <!-- Plugins js -->
-        <script src="{{ URL::asset('assets/libs/jszip/jszip.min.js') }}"></script>
-        <script src="{{ URL::asset('assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+        <script src="<?php echo e(URL::asset('assets/libs/jszip/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('assets/libs/pdfmake/pdfmake.min.js')); ?>"></script>
         <!-- Init js-->
-        <script src="{{ URL::asset('assets/js/pages/notification.init.js') }}"></script>
+        <script src="<?php echo e(URL::asset('assets/js/pages/notification.init.js')); ?>"></script>
         <script>
             // Delete Prescription
             $(document).on('click', '#delete-receptionist', function() {
@@ -123,7 +125,7 @@
                         type: "DELETE",
                         url: 'receptionist/' + id,
                         data: {
-                            _token: '{{ csrf_token() }}',
+                            _token: '<?php echo e(csrf_token()); ?>',
                             id:id,
                         },
                         beforeSend: function() {
@@ -147,4 +149,6 @@
                 }
             });
         </script>
-    @endsection
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/receptionist/receptionists.blade.php ENDPATH**/ ?>

@@ -7,9 +7,9 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Doctor List @endslot
+            @slot('title') Staff @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Doctors @endslot
+            @slot('li_2') Staff @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">
@@ -20,7 +20,7 @@
                         @if ($role != 'patient' && $role != 'receptionist')
                             <a href=" {{ route('doctor.create') }} ">
                                 <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('New Doctor') }}
+                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Staff') }}
                                 </button>
                             </a>
                         @endif
@@ -28,13 +28,13 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>{{ __('Sr. No') }}</th>
-                                    <th>{{ __('Title') }}</th>
-                                    <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Contact No') }}</th>
-                                    <th>{{ __('Email') }}</th>
+                                    <th>{{ __('#') }}</th>
+                                    <th>{{ __('Título') }}</th>
+                                    <th>{{ __('Nombre') }}</th>
+                                    <th>{{ __('Teléfono') }}</th>
+                                    <th>{{ __('E-Mail') }}</th>
                                     @if ($role != 'patient')
-                                        <th>{{ __('Option') }}</th>
+                                        <th>{{ __('Acción') }}</th>
                                     @endif
                                 </tr>
                             </thead>
