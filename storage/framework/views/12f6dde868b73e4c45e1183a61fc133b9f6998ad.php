@@ -1,4 +1,4 @@
-<?php $__env->startSection('title'); ?> <?php echo e(__('Pending Appointment list')); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> <?php echo e(__('Cancel Appointment List')); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 
     <body data-topbar="dark" data-layout="horizontal">
@@ -20,11 +20,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(url('today-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-day"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__("Today's Appointment List")); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__('Today Appointment List')); ?></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<?php echo e(url('pending-appointment')); ?>">
+                                <a class="nav-link " href="<?php echo e(url('pending-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="far fa-calendar"></i></span>
                                     <span class="d-none d-sm-block"><?php echo e(__('Pending Appointment List')); ?></span>
                                 </a>
@@ -42,7 +42,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo e(url('cancel-appointment')); ?>">
+                                <a class="nav-link active" href="<?php echo e(url('cancel-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-window-close"></i></span>
                                     <span class="d-none d-sm-block"><?php echo e(__('Cancel Appointment List')); ?></span>
                                 </a>
@@ -56,79 +56,53 @@
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th><?php echo e(__('#')); ?></th>
-                                                <th><?php echo e(__('Staff')); ?></th>
-                                                <th><?php echo e(__('Paciente')); ?></th>
-                                                <th><?php echo e(__('Teléfono')); ?></th>
-                                                <th><?php echo e(__('E-Mail')); ?></th>
-                                                <th><?php echo e(__('Fecha')); ?></th>
-                                                <th><?php echo e(__('Hora')); ?></th>
-                                                <th><?php echo e(__('Estatus')); ?></th>
-                                                <th><?php echo e(__('Acción')); ?></th>
+                                                <th><?php echo e(__('Sr. No')); ?></th>
+                                                <th><?php echo e(__('Doctor Name')); ?></th>
+                                                <th><?php echo e(__('Patient Name')); ?></th>
+                                                <th><?php echo e(__('Patient Contact No')); ?></th>
+                                                <th><?php echo e(__('Patient Email')); ?></th>
+                                                <th><?php echo e(__('Date')); ?></th>
+                                                <th><?php echo e(__('Time')); ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php if(session()->has('page_limit')): ?>
+                                                <?php
+                                                    $per_page = session()->get('page_limit');
+                                                ?>
+                                            <?php else: ?>
+                                                <?php
+                                                    $per_page = Config::get('app.page_limit');
+                                                ?>
+                                            <?php endif; ?>
                                             <?php
-                                            $i =0;
-                                            $count= 1;
+                                                $currentpage = $Cancel_appointment->currentPage();
                                             ?>
-                                            <?php $__currentLoopData = $newData; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item =>$key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>   
+                                            <?php $__currentLoopData = $Cancel_appointment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td><?php echo e($count); ?>
-
-                                                    <td> <?php echo e($key->fifthhanswer); ?> </td>
-                                                    <td><?php echo e($key->firstanswer); ?></td>
-                                                    <td><?php echo e($key->sexhanswer); ?></td>
-                                                    <td> <?php echo e($key->secondanswer); ?>
+                                                    <td><?php echo e($loop->index + 1 + $per_page * ($currentpage - 1)); ?></td>
+                                                    <td><?php echo e($item->doctor->first_name . ' ' . $item->doctor->last_name); ?></td>
+                                                    <td><?php echo e($item->patient->first_name . ' ' . $item->patient->last_name); ?>
 
                                                     </td>
-                                                    <?php
-                                                    if (empty($key->thirdanswer->date)) {
-                                                       ?> <td></td><?php
-                                                    }
-                                                    if(!empty($key->thirdanswer->date))
-                                                    {
-                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
-                                                    $newDate = date("d-m-Y", strtotime($date1));
-
-                                                    ?><td> <?php echo e($newDate); ?> </td><?php
-                                                    }
-                                                    ?>
-                                                    <?php
-                                                    if (empty($key->thirdanswer->date)) {
-                                                        ?> <td></td><?php
-                                                    } 
-                                                    if(!empty($key->thirdanswer->date))
-                                                    {
-                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
-                                                    $newTime = date("H:i", strtotime($date1));
-
-                                                    ?><td> <?php echo e($newTime); ?> </td><?php
-                                                    }
-                                                    ?>
-                                                    <td> <?php echo e($key->fourthanswer); ?> </td>
-                                                    <td> </td>
+                                                    <td><?php echo e($item->patient->mobile); ?></td>
+                                                    <td><?php echo e($item->patient->email); ?></td>
+                                                    <td><?php echo e($item->appointment_date); ?></td>
+                                                    <td><?php echo e($item->timeSlot->from . ' to ' . $item->timeSlot->to); ?></td>
                                                 </tr>
-                                                <?php
-                                                $i ++;
-                                                $count++;
-                                                ?>
-                                                <?php if(15 == $i): ?>
-                                                <?php break; ?>
-                                                <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="col-md-12 text-center mt-3">
                                     <div class="d-flex justify-content-start">
-                                        Showing <?php echo e($pending_appointment->firstItem()); ?> to
-                                        <?php echo e($pending_appointment->lastItem()); ?> of <?php echo e($pending_appointment->total()); ?>
+                                        Showing <?php echo e($Cancel_appointment->firstItem()); ?> to
+                                        <?php echo e($Cancel_appointment->lastItem()); ?> of <?php echo e($Cancel_appointment->total()); ?>
 
                                         entries
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        <?php echo e($pending_appointment->links()); ?>
+                                        <?php echo e($Cancel_appointment->links()); ?>
 
                                     </div>
                                 </div>
@@ -148,4 +122,4 @@
         <script src="<?php echo e(URL::asset('assets/js/pages/appointment.js')); ?>"></script>
     <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/appointment/pending-appointment.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/appointment/cancel-appointment.blade.php ENDPATH**/ ?>

@@ -766,6 +766,32 @@ class AppointmentController extends Controller
 
     public function pending_appointment(User $patient)
     {
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
+        $response = $request->getBody()->getContents();
+        $jotform_data = json_decode($response); 
+        $newData = array();
+        foreach($jotform_data->content as $key=> $jotforms_data){
+            $jotform_ans= $jotforms_data->answers;
+            //print_r($jotform_ans[0]->answer);die;
+            $newData1 = array();
+            $object = new \stdClass();
+            foreach($jotform_ans as $jotform_t_ans){
+                
+                if(isset($jotform_t_ans->answer)){
+                    //print_r($jotform_ans->answer);die;
+                   $newData1[] = array("answer" => $jotform_t_ans->answer);
+                }
+            }
+            $object->firstanswer = $newData1[0]['answer'];
+            $object->secondanswer = $newData1[1]['answer'];
+            $object->thirdanswer = $newData1[2]['answer'];
+            $object->fourthanswer = $newData1[3]['answer'];
+            $object->fifthhanswer = $newData1[4]['answer'];
+            $object->sexhanswer = $newData1[5]['answer'];
+            $newData[] = $object;
+        }
+        //print_r($newData);die;
         $user = Sentinel::getUser();
         if ($user->hasAccess('appointment.list')) {
             $user_id = Sentinel::getUser()->id;
@@ -789,7 +815,7 @@ class AppointmentController extends Controller
             } else {
                 $pending_appointment = Appointment::with('doctor', 'patient')->where(['status' => 0])->orderBy('id', 'DESC')->paginate($this->limit);
             }
-            return view('appointment.pending-appointment', compact('user', 'role', 'pending_appointment'));
+            return view('appointment.pending-appointment', compact('user', 'role', 'pending_appointment', 'newData'));
         } else {
             return view('error.403');
         }

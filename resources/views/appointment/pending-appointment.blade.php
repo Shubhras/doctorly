@@ -53,54 +53,68 @@
                         <div class="tab-content p-3 text-muted">
                             <div class="tab-pane active" id="PendingAppointmentList" role="tabpanel">
                                 <div class="table-responsive">
-
                                     <table class="table table-bordered dt-responsive nowrap "
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('Sr. No') }}</th>
-                                                <th>{{ __('Doctor Name') }}</th>
-                                                <th>{{ __('Patient Name') }}</th>
-                                                <th>{{ __('Patient Contact No') }}</th>
-                                                <th>{{ __('Patient Email') }}</th>
-                                                <th>{{ __('Date') }}</th>
-                                                <th>{{ __('Time') }}</th>
-                                                <th>{{ __('Action') }}</th>
+                                                <th>{{ __('#') }}</th>
+                                                <th>{{ __('Staff') }}</th>
+                                                <th>{{ __('Paciente') }}</th>
+                                                <th>{{ __('Teléfono') }}</th>
+                                                <th>{{ __('E-Mail') }}</th>
+                                                <th>{{ __('Fecha') }}</th>
+                                                <th>{{ __('Hora') }}</th>
+                                                <th>{{ __('Estatus') }}</th>
+                                                <th>{{ __('Acción') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (session()->has('page_limit'))
-                                                @php
-                                                    $per_page = session()->get('page_limit');
-                                                @endphp
-                                            @else
-                                                @php
-                                                    $per_page = Config::get('app.page_limit');
-                                                @endphp
-                                            @endif
-                                            @php
-                                                $currentpage = $pending_appointment->currentPage();
-                                            @endphp
-                                            @foreach ($pending_appointment as $item)
+                                            <?php
+                                            $i =0;
+                                            $count= 1;
+                                            ?>
+                                            @foreach ($newData as $item =>$key)   
                                                 <tr>
-                                                    <td>{{ $loop->index + 1 + $per_page * ($currentpage - 1) }}</td>
-                                                    <td> {{ $item->doctor->first_name . ' ' . $item->doctor->last_name }}
+                                                    <td>{{$count}}
+                                                    <td> {{ $key->fifthhanswer }} </td>
+                                                    <td>{{ $key->firstanswer }}</td>
+                                                    <td>{{ $key->sexhanswer }}</td>
+                                                    <td> {{ $key->secondanswer }}
                                                     </td>
-                                                    <td> {{ $item->patient->first_name . ' ' . $item->patient->last_name }}
-                                                    </td>
-                                                    <td> {{ $item->patient->mobile }} </td>
-                                                    <td> {{ $item->patient->email }} </td>
-                                                    <td>{{ $item->appointment_date }}</td>
-                                                    <td>{{ $item->timeSlot->from . ' to ' . $item->timeSlot->to }}</td>
-                                                    <td>
-                                                        @if ($role == 'doctor' || $role == 'receptionist')
-                                                            <button type="button" class="btn btn-success complete mb-2 mb-md-0"
-                                                                data-id="{{ $item->id }}">Complete</button>
-                                                        @endif
-                                                        <button type="button" class="btn btn-danger cancel mb-2 mb-md-0"
-                                                            data-id="{{ $item->id }}">Cancel</button>
-                                                    </td>
+                                                    <?php
+                                                    if (empty($key->thirdanswer->date)) {
+                                                       ?> <td></td><?php
+                                                    }
+                                                    if(!empty($key->thirdanswer->date))
+                                                    {
+                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                    $newDate = date("d-m-Y", strtotime($date1));
+
+                                                    ?><td> {{$newDate}} </td><?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if (empty($key->thirdanswer->date)) {
+                                                        ?> <td></td><?php
+                                                    } 
+                                                    if(!empty($key->thirdanswer->date))
+                                                    {
+                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                    $newTime = date("H:i", strtotime($date1));
+
+                                                    ?><td> {{$newTime}} </td><?php
+                                                    }
+                                                    ?>
+                                                    <td> {{ $key->fourthanswer }} </td>
+                                                    <td> </td>
                                                 </tr>
+                                                <?php
+                                                $i ++;
+                                                $count++;
+                                                ?>
+                                                @if(15 == $i)
+                                                @break
+                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>
