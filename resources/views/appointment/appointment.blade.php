@@ -11,7 +11,7 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Book Appointment @endslot
+            @slot('title') Reservar Una Cita @endslot
             @slot('li_1') Dashboard @endslot
             @slot('li_2') Appointment @endslot
         @endcomponent
@@ -20,7 +20,7 @@
             <div class="col-12">
                 <a href="{{ url('/appointment-create') }}"
                     class="btn btn-primary text-white waves-effect waves-light mb-4">
-                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('New Appointment') }}
+                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Nueva Cita') }}
                 </a>
             </div> <!-- end col -->
         </div> <!-- end row -->
@@ -35,7 +35,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">{{ __('Appointment List') }} | <label
+                        <!-- <h4 class="card-title mb-4">{{ __('Appointment List') }} | <label
+                                id="selected_date"><?php //echo date('d M, Y'); ?></label>
+                        </h4> -->
+                        <h4 class="card-title mb-4">{{ __('Control De Citas') }} | <label
                                 id="selected_date"><?php echo date('d M, Y'); ?></label>
                         </h4>
                         <div id="appointment_list">
@@ -43,20 +46,20 @@
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>{{ __('Sr.No.') }}</th>
+                                        <th>{{ __('No Señor.') }}</th>
                                         @if ($role == 'patient')
                                             <th>{{ __('Doctor Name') }}</th>
                                             <th>{{ __('Doctor Number') }}</th>
                                         @elseif($role == 'doctor')
-                                            <th>{{ __('Patient Name') }}</th>
-                                            <th>{{ __('Patient Number') }}</th>
+                                            <th>{{ __('Paciente') }}</th>
+                                            <th>{{ __('Teléfono') }}</th>
                                         @else
-                                            <th>{{ __('Patient Name') }}</th>
-                                            <th>{{ __('Doctor Name') }}</th>
-                                            <th>{{ __('Patient Number') }}</th>
+                                            <th>{{ __('Paciente') }}</th>
+                                            <th>{{ __('Staff') }}</th>
+                                            <th>{{ __('Teléfono') }}</th>
 
                                         @endif
-                                        <th>{{ __('Time') }}</th>
+                                        <th>{{ __('Hora') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

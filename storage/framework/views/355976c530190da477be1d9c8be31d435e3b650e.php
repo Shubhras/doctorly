@@ -10,7 +10,7 @@
     <?php $__env->startSection('content'); ?>
         <!-- start page title -->
         <?php $__env->startComponent('components.breadcrumb'); ?>
-            <?php $__env->slot('title'); ?> Book Appointment <?php $__env->endSlot(); ?>
+            <?php $__env->slot('title'); ?> Reservar Una Cita <?php $__env->endSlot(); ?>
             <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
             <?php $__env->slot('li_2'); ?> Appointment <?php $__env->endSlot(); ?>
         <?php echo $__env->renderComponent(); ?>
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <a href="<?php echo e(url('/appointment-create')); ?>"
                     class="btn btn-primary text-white waves-effect waves-light mb-4">
-                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('New Appointment')); ?>
+                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('Nueva Cita')); ?>
 
                 </a>
             </div> <!-- end col -->
@@ -35,7 +35,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4"><?php echo e(__('Appointment List')); ?> | <label
+                        <!-- <h4 class="card-title mb-4"><?php echo e(__('Appointment List')); ?> | <label
+                                id="selected_date"><?php //echo date('d M, Y'); ?></label>
+                        </h4> -->
+                        <h4 class="card-title mb-4"><?php echo e(__('Control De Citas')); ?> | <label
                                 id="selected_date"><?php echo date('d M, Y'); ?></label>
                         </h4>
                         <div id="appointment_list">
@@ -43,20 +46,20 @@
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th><?php echo e(__('Sr.No.')); ?></th>
+                                        <th><?php echo e(__('No Señor.')); ?></th>
                                         <?php if($role == 'patient'): ?>
                                             <th><?php echo e(__('Doctor Name')); ?></th>
                                             <th><?php echo e(__('Doctor Number')); ?></th>
                                         <?php elseif($role == 'doctor'): ?>
-                                            <th><?php echo e(__('Patient Name')); ?></th>
-                                            <th><?php echo e(__('Patient Number')); ?></th>
+                                            <th><?php echo e(__('Paciente')); ?></th>
+                                            <th><?php echo e(__('Teléfono')); ?></th>
                                         <?php else: ?>
-                                            <th><?php echo e(__('Patient Name')); ?></th>
-                                            <th><?php echo e(__('Doctor Name')); ?></th>
-                                            <th><?php echo e(__('Patient Number')); ?></th>
+                                            <th><?php echo e(__('Paciente')); ?></th>
+                                            <th><?php echo e(__('Staff')); ?></th>
+                                            <th><?php echo e(__('Teléfono')); ?></th>
 
                                         <?php endif; ?>
-                                        <th><?php echo e(__('Time')); ?></th>
+                                        <th><?php echo e(__('Hora')); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>

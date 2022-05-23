@@ -61,6 +61,7 @@
                                                 <th>{{ __('Staff') }}</th>
                                                 <th>{{ __('Paciente') }}</th>
                                                 <th>{{ __('Teléfono') }}</th>
+                                                <th>{{ __('Tipo') }}</th>
                                                 <th>{{ __('E-Mail') }}</th>
                                                 <th>{{ __('Fecha') }}</th>
                                                 <th>{{ __('Hora') }}</th>
@@ -69,52 +70,69 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php $newData ?>
                                             <?php
-                                            $i =0;
                                             $count= 1;
                                             ?>
-                                            @foreach ($newData as $item =>$key)   
+                                            @foreach ($newData as $item =>$key)
                                                 <tr>
-                                                    <td>{{$count}}
-                                                    <td> {{ $key->fifthhanswer }} </td>
+                                                    <td>{{$count}} </td>
+                                                    @if(empty($key->fifthanswer))
+                                                    <td></td>
+                                                    @else
+                                                    <td> {{ $key->fifthanswer }} </td>
+                                                    @endif
+                                                    @if(empty($key->firstanswer))
+                                                    <td></td>
+                                                    @else
                                                     <td>{{ $key->firstanswer }}</td>
-                                                    <td>{{ $key->sexhanswer }}</td>
-                                                    <td> {{ $key->secondanswer }}
-                                                    </td>
+                                                    @endif
+                                                    <?php 
+                                                    if(empty($key->sevenhanswer->phone)){
+                                                        ?><td></td><?php
+                                                    }else{
+                                                        $area = json_decode(json_encode($key->sevenhanswer->area), true);
+                                                        $phone_no = json_decode(json_encode($key->sevenhanswer->phone), true);
+                                                        ?><td> ({{$area}}){{$phone_no}} </td><?php
+                                                    }?>
+                                                    @if(empty($key->sixanswer))
+                                                    <td></td>
+                                                    @else
+                                                    <td>{{ $key->sixanswer }}</td>
+                                                    @endif
+                                                    @if(empty($key->secondanswer))
+                                                    <td></td>
+                                                    @else
+                                                    <td> {{ $key->secondanswer }} </td>
+                                                    @endif
                                                     <?php
                                                     if (empty($key->thirdanswer->date)) {
-                                                       ?> <td></td><?php
-                                                    }
-                                                    if(!empty($key->thirdanswer->date))
-                                                    {
-                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
-                                                    $newDate = date("d-m-Y", strtotime($date1));
-
-                                                    ?><td> {{$newDate}} </td><?php
+                                                        ?> <td></td><?php
+                                                    }else{
+                                                        $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                        $newDate = date("d-m-Y", strtotime($date1));
+                                                        ?><td> {{$newDate}} </td><?php
                                                     }
                                                     ?>
                                                     <?php
                                                     if (empty($key->thirdanswer->date)) {
                                                         ?> <td></td><?php
-                                                    } 
-                                                    if(!empty($key->thirdanswer->date))
-                                                    {
-                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
-                                                    $newTime = date("H:i", strtotime($date1));
-
-                                                    ?><td> {{$newTime}} </td><?php
+                                                    }else{
+                                                        $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                        $newTime = date("H:i", strtotime($date1));
+                                                        ?><td> {{$newTime}} </td><?php
                                                     }
                                                     ?>
+                                                    @if(empty($key->fourthanswer))
+                                                    <td></td>
+                                                    @else
                                                     <td> {{ $key->fourthanswer }} </td>
+                                                    @endif
                                                     <td> </td>
                                                 </tr>
                                                 <?php
-                                                $i ++;
                                                 $count++;
                                                 ?>
-                                                @if(15 == $i)
-                                                @break
-                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>

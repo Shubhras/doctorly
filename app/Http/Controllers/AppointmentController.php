@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Appointment;
 use App\DoctorAvailableDay;
 use App\DoctorAvailableSlot;
@@ -773,25 +772,25 @@ class AppointmentController extends Controller
         $newData = array();
         foreach($jotform_data->content as $key=> $jotforms_data){
             $jotform_ans= $jotforms_data->answers;
-            //print_r($jotform_ans[0]->answer);die;
             $newData1 = array();
             $object = new \stdClass();
             foreach($jotform_ans as $jotform_t_ans){
-                
-                if(isset($jotform_t_ans->answer)){
-                    //print_r($jotform_ans->answer);die;
+                if((isset($jotform_t_ans->answer))){
                    $newData1[] = array("answer" => $jotform_t_ans->answer);
+                   //print_r($newData1);
                 }
             }
             $object->firstanswer = $newData1[0]['answer'];
             $object->secondanswer = $newData1[1]['answer'];
             $object->thirdanswer = $newData1[2]['answer'];
             $object->fourthanswer = $newData1[3]['answer'];
-            $object->fifthhanswer = $newData1[4]['answer'];
-            $object->sexhanswer = $newData1[5]['answer'];
+            $object->fifthanswer = $newData1[4]['answer'];
+            $object->sixanswer = $newData1[5]['answer'];
+            if(!empty($newData1[6]['answer'])){
+            $object->sevenhanswer = $newData1[6]['answer'];
+            }
             $newData[] = $object;
         }
-        //print_r($newData);die;
         $user = Sentinel::getUser();
         if ($user->hasAccess('appointment.list')) {
             $user_id = Sentinel::getUser()->id;

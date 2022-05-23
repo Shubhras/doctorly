@@ -60,6 +60,7 @@
                                                 <th><?php echo e(__('Staff')); ?></th>
                                                 <th><?php echo e(__('Paciente')); ?></th>
                                                 <th><?php echo e(__('Teléfono')); ?></th>
+                                                <th><?php echo e(__('Tipo')); ?></th>
                                                 <th><?php echo e(__('E-Mail')); ?></th>
                                                 <th><?php echo e(__('Fecha')); ?></th>
                                                 <th><?php echo e(__('Hora')); ?></th>
@@ -68,54 +69,69 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php $newData ?>
                                             <?php
-                                            $i =0;
                                             $count= 1;
                                             ?>
-                                            <?php $__currentLoopData = $newData; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item =>$key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>   
+                                            <?php $__currentLoopData = $newData; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item =>$key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td><?php echo e($count); ?>
-
-                                                    <td> <?php echo e($key->fifthhanswer); ?> </td>
+                                                    <td><?php echo e($count); ?> </td>
+                                                    <?php if(empty($key->fifthanswer)): ?>
+                                                    <td></td>
+                                                    <?php else: ?>
+                                                    <td> <?php echo e($key->fifthanswer); ?> </td>
+                                                    <?php endif; ?>
+                                                    <?php if(empty($key->firstanswer)): ?>
+                                                    <td></td>
+                                                    <?php else: ?>
                                                     <td><?php echo e($key->firstanswer); ?></td>
-                                                    <td><?php echo e($key->sexhanswer); ?></td>
-                                                    <td> <?php echo e($key->secondanswer); ?>
-
-                                                    </td>
+                                                    <?php endif; ?>
+                                                    <?php 
+                                                    if(empty($key->sevenhanswer->phone)){
+                                                        ?><td></td><?php
+                                                    }else{
+                                                        $area = json_decode(json_encode($key->sevenhanswer->area), true);
+                                                        $phone_no = json_decode(json_encode($key->sevenhanswer->phone), true);
+                                                        ?><td> (<?php echo e($area); ?>)<?php echo e($phone_no); ?> </td><?php
+                                                    }?>
+                                                    <?php if(empty($key->sixanswer)): ?>
+                                                    <td></td>
+                                                    <?php else: ?>
+                                                    <td><?php echo e($key->sixanswer); ?></td>
+                                                    <?php endif; ?>
+                                                    <?php if(empty($key->secondanswer)): ?>
+                                                    <td></td>
+                                                    <?php else: ?>
+                                                    <td> <?php echo e($key->secondanswer); ?> </td>
+                                                    <?php endif; ?>
                                                     <?php
                                                     if (empty($key->thirdanswer->date)) {
-                                                       ?> <td></td><?php
-                                                    }
-                                                    if(!empty($key->thirdanswer->date))
-                                                    {
-                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
-                                                    $newDate = date("d-m-Y", strtotime($date1));
-
-                                                    ?><td> <?php echo e($newDate); ?> </td><?php
+                                                        ?> <td></td><?php
+                                                    }else{
+                                                        $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                        $newDate = date("d-m-Y", strtotime($date1));
+                                                        ?><td> <?php echo e($newDate); ?> </td><?php
                                                     }
                                                     ?>
                                                     <?php
                                                     if (empty($key->thirdanswer->date)) {
                                                         ?> <td></td><?php
-                                                    } 
-                                                    if(!empty($key->thirdanswer->date))
-                                                    {
-                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
-                                                    $newTime = date("H:i", strtotime($date1));
-
-                                                    ?><td> <?php echo e($newTime); ?> </td><?php
+                                                    }else{
+                                                        $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                        $newTime = date("H:i", strtotime($date1));
+                                                        ?><td> <?php echo e($newTime); ?> </td><?php
                                                     }
                                                     ?>
+                                                    <?php if(empty($key->fourthanswer)): ?>
+                                                    <td></td>
+                                                    <?php else: ?>
                                                     <td> <?php echo e($key->fourthanswer); ?> </td>
+                                                    <?php endif; ?>
                                                     <td> </td>
                                                 </tr>
                                                 <?php
-                                                $i ++;
                                                 $count++;
                                                 ?>
-                                                <?php if(15 == $i): ?>
-                                                <?php break; ?>
-                                                <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>
