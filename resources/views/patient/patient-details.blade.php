@@ -70,20 +70,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                <iframe id="JotFormIFrame-221297017399160" title="BTC Scheduling" src="https://hipaa.jotform.com/app/221297017399160?appEmbedded=1" style="height:1200px;border: 0;"></iframe>
-                <style>
-                    .ePNobf {
-                        max-width: 100%!important;
-                        }
-                </style>
-                    <!-- <div class="card-body">
+                    <div class="card-body">
                         <blockquote>{{ __('Información básica') }}</blockquote>
                         <form action="@if ($patient ) {{ url('patient/' . $patient->id) }} @else {{ route('patient.store') }} @endif" method="post" enctype="multipart/form-data">
                             @csrf
                             @if ($patient )
                                 <input type="hidden" name="_method" value="PATCH" />
-                            @endif -->
-                            <!-- <div class="row">
+                            @endif
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
@@ -212,7 +206,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <!-- <blockquote>{{ __('Medical Information') }}</blockquote>
                             <div class="row">
                                 <div class="col-md-6">
@@ -353,7 +347,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">
                                         @if ($patient && $patient_info && $medical_info)
@@ -368,7 +362,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- end row -->
     @endsection
     @section('script')

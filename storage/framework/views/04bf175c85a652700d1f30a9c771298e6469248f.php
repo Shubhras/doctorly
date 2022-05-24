@@ -27,38 +27,38 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-user-circle mr-2"></i><?php echo e(__('Patients')); ?> <div
+                                <i class="bx bx-user-circle mr-2"></i><?php echo e(__('Pacientes')); ?> <div
                                     class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="<?php echo e(url('patient')); ?>"
                                     class="dropdown-item"><?php echo e(__('List of Patients')); ?></a>
                                 <a href="<?php echo e(route('patient.create')); ?>"
-                                    class="dropdown-item"><?php echo e(__('Add New Patient')); ?></a>
+                                    class="dropdown-item"><?php echo e(__('Add New Patients')); ?></a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-user-circle mr-2"></i><?php echo e(__('Receptionist')); ?> <div
+                                <i class="bx bx-user-circle mr-2"></i><?php echo e(__('Recepcionistas ')); ?> <div
                                     class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="<?php echo e(url('receptionist')); ?>"
-                                    class="dropdown-item"><?php echo e(__('List of Receptionist')); ?></a>
+                                    class="dropdown-item"><?php echo e(__('List of Recepcionistas')); ?></a>
                                 <a href="<?php echo e(route('receptionist.create')); ?>"
-                                    class="dropdown-item"><?php echo e(__('Add New Receptionist')); ?></a>
+                                    class="dropdown-item"><?php echo e(__('Add New Recepcionistas')); ?></a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(url('pending-appointment')); ?>">
-                                <i class='bx bx-list-plus mr-2'></i><?php echo e(__('Appointment List')); ?>
+                                <i class='bx bx-list-plus mr-2'></i><?php echo e(__('Control de Citas')); ?>
 
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(url('transaction')); ?>">
-                                <i class='bx bx-list-check mr-2'></i><?php echo e(__('Transaction')); ?>
+                                <i class='bx bx-list-check mr-2'></i><?php echo e(__('Transacciones')); ?>
 
                             </a>
                         </li>

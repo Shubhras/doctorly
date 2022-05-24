@@ -1,4 +1,4 @@
-<?php $__env->startSection('title'); ?> <?php echo e(__('Upcoming Appointment list')); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> <?php echo e(__('Cancel Appointment List')); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
 
     <body data-topbar="dark" data-layout="horizontal">
@@ -20,7 +20,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(url('today-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-day"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__("Citas de hoy")); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__('Citas de hoy')); ?></span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -30,7 +30,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<?php echo e(url('upcoming-appointment')); ?>">
+                                <a class="nav-link" href="<?php echo e(url('upcoming-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-week"></i></span>
                                     <span class="d-none d-sm-block"><?php echo e(__('Próxima')); ?></span>
                                 </a>
@@ -42,7 +42,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo e(url('cancel-appointment')); ?>">
+                                <a class="nav-link active" href="<?php echo e(url('cancel-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-window-close"></i></span>
                                     <span class="d-none d-sm-block"><?php echo e(__('Canceladas')); ?></span>
                                 </a>
@@ -76,18 +76,16 @@
                                                 ?>
                                             <?php endif; ?>
                                             <?php
-                                                $currentpage = $Upcoming_appointment->currentPage();
+                                                $currentpage = $Cancel_appointment->currentPage();
                                             ?>
-                                            <?php $__currentLoopData = $Upcoming_appointment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $Cancel_appointment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
                                                     <td><?php echo e($loop->index + 1 + $per_page * ($currentpage - 1)); ?></td>
-                                                    <td> <?php echo e($item->doctor->first_name . ' ' . $item->doctor->last_name); ?>
+                                                    <td><?php echo e($item->doctor->first_name . ' ' . $item->doctor->last_name); ?></td>
+                                                    <td><?php echo e($item->patient->first_name . ' ' . $item->patient->last_name); ?>
 
                                                     </td>
-                                                    <td> <?php echo e($item->patient->first_name . ' ' . $item->patient->last_name); ?>
-
-                                                    </td>
-                                                    <td> <?php echo e($item->patient->mobile); ?> </td>
+                                                    <td><?php echo e($item->patient->mobile); ?></td>
                                                     <td><?php echo e($item->patient->email); ?></td>
                                                     <td><?php echo e($item->appointment_date); ?></td>
                                                     <td><?php echo e($item->timeSlot->from . ' to ' . $item->timeSlot->to); ?></td>
@@ -98,14 +96,13 @@
                                 </div>
                                 <div class="col-md-12 text-center mt-3">
                                     <div class="d-flex justify-content-start">
-                                        Showing <?php echo e($Upcoming_appointment->firstItem()); ?> to
-                                        <?php echo e($Upcoming_appointment->lastItem()); ?> of
-                                        <?php echo e($Upcoming_appointment->total()); ?>
+                                        Showing <?php echo e($Cancel_appointment->firstItem()); ?> to
+                                        <?php echo e($Cancel_appointment->lastItem()); ?> of <?php echo e($Cancel_appointment->total()); ?>
 
                                         entries
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        <?php echo e($Upcoming_appointment->links()); ?>
+                                        <?php echo e($Cancel_appointment->links()); ?>
 
                                     </div>
                                 </div>
@@ -125,4 +122,4 @@
         <script src="<?php echo e(URL::asset('assets/js/pages/appointment.js')); ?>"></script>
     <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/appointment/upcoming-appointment.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/appointment/cancel-appointment.blade.php ENDPATH**/ ?>

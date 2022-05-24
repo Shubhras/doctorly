@@ -78,20 +78,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                <iframe id="JotFormIFrame-221297017399160" title="BTC Scheduling" src="https://hipaa.jotform.com/app/221297017399160?appEmbedded=1" style="height:1200px;border: 0;"></iframe>
-                <style>
-                    .ePNobf {
-                        max-width: 100%!important;
-                        }
-                </style>
-                    <!-- <div class="card-body">
+                    <div class="card-body">
                         <blockquote><?php echo e(__('Información básica')); ?></blockquote>
                         <form action="<?php if($patient ): ?> <?php echo e(url('patient/' . $patient->id)); ?> <?php else: ?> <?php echo e(route('patient.store')); ?> <?php endif; ?>" method="post" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
                             <?php if($patient ): ?>
                                 <input type="hidden" name="_method" value="PATCH" />
-                            <?php endif; ?> -->
-                            <!-- <div class="row">
+                            <?php endif; ?>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12 form-group">
@@ -340,7 +334,7 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <!-- <blockquote><?php echo e(__('Medical Information')); ?></blockquote>
                             <div class="row">
                                 <div class="col-md-6">
@@ -594,7 +588,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div> -->
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">
                                         <?php if($patient && $patient_info && $medical_info): ?>
@@ -611,7 +605,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- end row -->
     <?php $__env->stopSection(); ?>
     <?php $__env->startSection('script'); ?>

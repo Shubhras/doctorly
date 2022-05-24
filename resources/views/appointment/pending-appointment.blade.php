@@ -7,7 +7,7 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Appointment List @endslot
+            @slot('title') Control de Citas @endslot
             @slot('li_1') Dashboard @endslot
             @slot('li_2') Appointment @endslot
         @endcomponent
@@ -21,31 +21,31 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('today-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-day"></i></span>
-                                    <span class="d-none d-sm-block">{{ __("Today's Appointment List") }}</span>
+                                    <span class="d-none d-sm-block">{{ __("Citas de hoy") }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ url('pending-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="far fa-calendar"></i></span>
-                                    <span class="d-none d-sm-block">{{ __('Pending Appointment List') }}</span>
+                                    <span class="d-none d-sm-block">{{ __('Pendientes') }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('upcoming-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-week"></i></span>
-                                    <span class="d-none d-sm-block">{{ __('Upcoming Appointment List') }}</span>
+                                    <span class="d-none d-sm-block">{{ __('Próxima ') }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('complete-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="fas fa-check-square"></i></span>
-                                    <span class="d-none d-sm-block">{{ __('Complete Appointment List') }}</span>
+                                    <span class="d-none d-sm-block">{{ __('Completadas') }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('cancel-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="fas fa-window-close"></i></span>
-                                    <span class="d-none d-sm-block">{{ __('Cancel Appointment List') }}</span>
+                                    <span class="d-none d-sm-block">{{ __('Canceladas') }}</span>
                                 </a>
                             </li>
                         </ul>

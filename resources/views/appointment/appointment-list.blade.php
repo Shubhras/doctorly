@@ -11,7 +11,7 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Appointment List @endslot
+            @slot('title') Control de Citas @endslot
             @slot('li_1') Dashboard @endslot
             @slot('li_2') Appointment @endslot
         @endcomponent

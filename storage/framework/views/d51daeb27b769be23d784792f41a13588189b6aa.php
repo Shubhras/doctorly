@@ -6,7 +6,7 @@
     <?php $__env->startSection('content'); ?>
         <!-- start page title -->
         <?php $__env->startComponent('components.breadcrumb'); ?>
-            <?php $__env->slot('title'); ?> Appointment List <?php $__env->endSlot(); ?>
+            <?php $__env->slot('title'); ?> Control de Citas <?php $__env->endSlot(); ?>
             <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
             <?php $__env->slot('li_2'); ?> Appointment <?php $__env->endSlot(); ?>
         <?php echo $__env->renderComponent(); ?>
@@ -20,31 +20,31 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(url('today-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-day"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__("Today's Appointment List")); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__("Citas de hoy")); ?></span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="<?php echo e(url('pending-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="far fa-calendar"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__('Pending Appointment List')); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__('Pendientes')); ?></span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(url('upcoming-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-week"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__('Upcoming Appointment List')); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__('Próxima ')); ?></span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(url('complete-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-check-square"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__('Complete Appointment List')); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__('Completadas')); ?></span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(url('cancel-appointment')); ?>">
                                     <span class="d-block d-sm-none"><i class="fas fa-window-close"></i></span>
-                                    <span class="d-none d-sm-block"><?php echo e(__('Cancel Appointment List')); ?></span>
+                                    <span class="d-none d-sm-block"><?php echo e(__('Canceladas')); ?></span>
                                 </a>
                             </li>
                         </ul>
