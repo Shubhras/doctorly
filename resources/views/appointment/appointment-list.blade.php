@@ -13,7 +13,7 @@
         @component('components.breadcrumb')
             @slot('title') Control de Citas @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Appointment @endslot
+            @slot('li_2') Control de Citas @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">

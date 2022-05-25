@@ -20,7 +20,8 @@
                         @if ($role != 'patient' && $role != 'receptionist')
                             <a href=" {{ route('doctor.create') }} ">
                                 <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Staff') }}
+                                    <!-- <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Staff') }} -->
+                                    <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Nueva Staff') }}
                                 </button>
                             </a>
                         @endif

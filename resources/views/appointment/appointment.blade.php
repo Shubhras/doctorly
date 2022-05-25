@@ -11,9 +11,9 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Reservar Una Cita @endslot
+            @slot('title')  @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Appointment @endslot
+            @slot('li_2') Calendario @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">

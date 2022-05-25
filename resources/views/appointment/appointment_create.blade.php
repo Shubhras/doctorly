@@ -17,16 +17,16 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Book Appointment @endslot
+            @slot('title') Reservar Una Cita @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Booked Appointment @endslot
+            @slot('li_2') Calendario @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">
             <div class="col-12">
                 <a href="{{ url('/appointment/create') }}"
                     class="btn btn-primary text-white waves-effect waves-light mb-4">
-                    <i class="mdi mdi-arrow-left  font-size-16 align-middle mr-2"></i> {{ __('Back') }}
+                    <i class="mdi mdi-arrow-left  font-size-16 align-middle mr-2"></i> {{ __('Atrás') }}
                 </a>
             </div> <!-- end col -->
         </div> <!-- end row -->

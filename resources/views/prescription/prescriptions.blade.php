@@ -38,9 +38,10 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title') Prescription List @endslot
+            <!-- @slot('title') Prescription List @endslot -->
+            @slot('title') Bandeja de entrada de historial médico @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Prescription @endslot
+            @slot('li_2') Bandeja de entrada de historial médico @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">
@@ -51,7 +52,8 @@
                             <a href=" {{ route('prescription.create') }} ">
                                 <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
                                     <i class="bx bx-plus font-size-16 align-middle mr-2"></i>
-                                    {{ __('Create Prescription') }}
+                                    <!-- {{ __('Create Prescription') }} -->
+                                    {{ __('Crear historial medico') }}
                                 </button>
                             </a>
                         @endif

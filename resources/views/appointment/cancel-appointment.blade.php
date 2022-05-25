@@ -9,7 +9,7 @@
         @component('components.breadcrumb')
             @slot('title') Control de Citas @endslot
             @slot('li_1') Dashboard @endslot
-            @slot('li_2') Appointment @endslot
+            @slot('li_2') Control de Citas @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">
@@ -57,13 +57,15 @@
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('Sr. No') }}</th>
-                                                <th>{{ __('Doctor Name') }}</th>
-                                                <th>{{ __('Patient Name') }}</th>
-                                                <th>{{ __('Patient Contact No') }}</th>
-                                                <th>{{ __('Patient Email') }}</th>
-                                                <th>{{ __('Date') }}</th>
-                                                <th>{{ __('Time') }}</th>
+                                                <th>{{ __('#') }}</th>
+                                                <th>{{ __('Staff') }}</th>
+                                                <th>{{ __('Paciente') }}</th>
+                                                <th>{{ __('Teléfono') }}</th>
+                                                <th>{{ __('E-Mail') }}</th>
+                                                <th>{{ __('Fecha') }}</th>
+                                                <th>{{ __('Hora') }}</th>
+                                                <th>{{ __('Estatus') }}</th>
+                                                <th>{{ __('Acción') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

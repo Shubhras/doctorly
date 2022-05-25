@@ -60,8 +60,8 @@
                 @else
                     <a href="{{ url('patient') }}">
                         <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                            <i
-                                class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Back to Patient List') }}
+                            <!-- <i class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Back to Patient List') }} -->
+                            <i class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Volver a Pacientes') }}
                         </button>
                     </a>
                 @endif

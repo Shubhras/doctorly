@@ -10,10 +10,14 @@
     @section('content')
         <!-- start page title -->
         @component('components.breadcrumb')
-            @slot('title')Create Prescription @endslot
+            <!-- @slot('title')Create Prescription @endslot
             @slot('li_1') Dashboard @endslot
             @slot('li_2') Prescription @endslot
-            @slot('li_3') Create Prescription @endslot
+            @slot('li_3') Create Prescription @endslot -->
+            @slot('title')Crear historial medico @endslot
+            @slot('li_1') Dashboard @endslot
+            @slot('li_2') Historial medico @endslot
+            @slot('li_3') Crear historial medico @endslot
         @endcomponent
         <!-- end page title -->
         <div class="row">
@@ -21,7 +25,7 @@
                 <a href="{{ url('prescription') }}">
                     <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
                         <i
-                            class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Back to Prescription List') }}
+                            class="bx bx-arrow-back font-size-16 align-middle mr-2"></i>{{ __('Volver a la Historia Médica') }}
                     </button>
                 </a>
             </div>

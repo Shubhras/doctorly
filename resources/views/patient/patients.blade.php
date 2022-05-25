@@ -18,7 +18,8 @@
                     <div class="card-body">
                         <a href=" {{ route('patient.create') }} ">
                             <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Pacientes') }}
+                                <!-- <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Pacientes') }} -->
+                                <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Nueva Pacientes') }}
                             </button>
                         </a>
                         <table class="table table-bordered dt-responsive nowrap"
