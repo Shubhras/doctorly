@@ -1,4 +1,4 @@
-<header id="page-topbar">
+<header id="page-topbar" class="header-bg-color">
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
@@ -16,7 +16,7 @@
                         <img src="<?php echo e(URL::asset('assets/images/logo-light.png')); ?>" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?php echo e(URL::asset('assets/images/logo-light1.png')); ?>" alt="" height="19">
+                        <img src="<?php echo e(URL::asset('assets/images/logo-light1.png')); ?>" alt="" height="35">
                     </span>
                 </a>
             </div>
@@ -72,6 +72,12 @@
                 </div>
             </div>
             <div class="dropdown d-none d-lg-inline-block ml-1">
+                <span class="logo-lg" >
+                    <img src="<?php echo e(URL::asset('assets/images/btc_logo1-new.png')); ?>" alt="" height="30">
+                </span>&nbsp;
+                <span class="logo-lg" >
+                    <img src="<?php echo e(URL::asset('assets/images/btc_logo2-new.png')); ?>" alt="" height="30">
+                </span>
                 <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                     <i class="bx bx-fullscreen"></i>
                 </button>
@@ -158,11 +164,11 @@
                     </form>
                 </div>
             </div>
-            <div class="dropdown d-inline-block">
+            <!-- <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect ">
                     <i class="bx bx-cog bx-spin"></i>
                 </button>
-            </div>
+            </div> -->
         </div>
     </div>
 </header>

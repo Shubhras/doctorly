@@ -175,7 +175,8 @@ File: Main Css File
 }
 
 body[data-topbar=dark] #page-topbar {
-    background-color: #2a3042;
+    /* background-color: #2a3042; */
+    background-color: #000000;
 }
 
 body[data-topbar=dark] .navbar-header .dropdown.show .header-item {
@@ -286,6 +287,7 @@ body[data-layout=horizontal] .page-content {
     color: #74788d;
     left: 250px;
     height: 60px;
+    /* background-color: #f2f2f5; */
     background-color: #f2f2f5;
 }
 
