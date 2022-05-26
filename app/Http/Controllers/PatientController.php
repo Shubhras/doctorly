@@ -68,31 +68,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        // $client = new \GuzzleHttp\Client();
-        // $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
-        // $response = $request->getBody()->getContents();
-        // $jotform_data = json_decode($response); 
-        // foreach($jotform_data->content as $key=> $jotforms_data){
-        //     $jotform_ans= $jotforms_data->answers;
-        //     foreach($jotform_ans as $jotform_t_ans){
-        //         if(isset($jotform_t_ans->answer)){
-        //             if(isset($jotform_t_ans->answer->date)){
-        //                 $jotformdate=($jotform_t_ans->answer->date);
-        //             }
-        //             $jotformans=($jotform_t_ans->answer);
-        //         }
-        //     }
-        //     // $data[$key] = $jotforms_data[2];
-        //     // print_r($data[$key]);die;
-        //     // $answers=$jotforms_data['answers'];
-        //     // foreach($answers as $answer){
-        //     //     if($answer['name']=='fullName4')
-        //     //     print_r ($answer['text']); die;
-        //     // }
-        // }   
-        //echo '<pre>',print_r($jotform_data->content),'</pre>';
         $user = Sentinel::getUser();
-        //echo '<pre>',print_r($user),'</pre>';die;
         if ($user->hasAccess('patient.create')) {
             $role = $user->roles[0]->slug;
             $patient = null;
@@ -245,6 +221,7 @@ class PatientController extends Controller
                 return redirect('/')->with('error', 'Patient not found');
             }
         } else {
+
             return view('error.403');
 
         }
