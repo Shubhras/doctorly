@@ -591,7 +591,21 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
-
+.bg-login-top{
+  /* background-color: #40ccd5; */
+  background-color: #359197;
+  padding: 40px;
+  border-radius: 20px;
+}
+.bg-login-logo{
+  background-color: #000000!important;
+}
+.login-header-bg-color{
+  background-color: #000000!important;
+}
+.text-color{
+  color: #359197;
+}
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -2931,7 +2945,16 @@ fieldset:disabled a.btn {
   background-color: #556ee6;
   border-color: #556ee6;
 }
-
+.bg-btn {
+  color: #fff;
+  background-color: #000000;
+  border-color: #000000;
+}
+.bg-btn:hover {
+  color: #fff;
+  background-color: #000000;
+  border-color: #000000;
+}
 .btn-primary:hover {
   color: #fff;
   background-color: #3452e1;

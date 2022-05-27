@@ -65,7 +65,7 @@
                                                 <th>{{ __('E-Mail') }}</th>
                                                 <th>{{ __('Fecha') }}</th>
                                                 <th>{{ __('Hora') }}</th>
-                                                <th>{{ __('Estatus') }}</th>
+                                                <!-- <th>{{ __('Estatus') }}</th> -->
                                                 <th>{{ __('Acción') }}</th>
                                             </tr>
                                         </thead>
@@ -123,11 +123,11 @@
                                                         ?><td> {{$newTime}} </td><?php
                                                     }
                                                     ?>
-                                                    @if(empty($key->fourthanswer))
+                                                    <!-- @if(empty($key->fourthanswer))
                                                     <td></td>
                                                     @else
                                                     <td> {{ $key->fourthanswer }} </td>
-                                                    @endif
+                                                    @endif -->
                                                     <td> </td>
                                                 </tr>
                                                 <?php
