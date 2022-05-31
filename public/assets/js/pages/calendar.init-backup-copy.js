@@ -85,58 +85,78 @@ $(document).ready(function() {
         selectHelper: true,
         select: function(start, end, allDay) {
             var dt = start.format('YYYY/MM/DD');
-            $('#selected_date').html(start.format('YYYY-DD-MM'));
-            //console.log(start.format('YYYY-DD-MM'));
+            $('#selected_date').html(start.format('DD MMM, YYYY'));
             $('#appointment_list').hide();
             $('#new_list').show();
             $.ajax({
                 method: 'get',
-                url: apilist_url,
+                url: "/appointment_filter",
                 data: { date: dt },
                 dataType: 'json',
                 success: function(response) {
-                    var t = 1;
-                    var data = response;
-
-                    var newArray = [];
-                    for(let i = 0; i < data.length; i++){
-                        let date = new Date(data[i].thirdanswer, 'YYYY/MM/DD');
-                        if(data[i].thirdanswer != undefined){
-                            newArray.push({"fifthanswer": data[i].fifthanswer,
-                            "firstanswer": data[i].firstanswer,
-                            "fourthanswer": data[i].fourthanswer,
-                            "secondanswer": data[i].secondanswer,
-                            "sixanswer": data[i].sixanswer,
-                            "thirdanswer":{
-                                "date": date
-                            }});
+                    console.log(response);
+                    if (response.status == 'error') {
+                        $('#new_list').html('<h6>' + response.message + start.format('DD MMM, YYYY') + '</h6>');
+                    } else {
+                        var t = 1;
+                        var data = response.appointments;
+                        var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>Sr.No</th>';
+                        if (response.role == 'doctor') {
+                            list += '<th>Patient Name</th>';
+                            list += '<th>Patient Number</th>';
+                        } else if (response.role == 'patient') {
+                            list += '<th>Doctor Name</th>';
+                            list += '<th>Doctor Number</th>';
+                        } else {
+                            list += '<th>Patient Name</th><th>Doctor Name</th>';
+                            list += '<th>Patient Number</th>';
                         }
-                    }
-                    console.log("dd",newArray);
-                    // var newdata = data.filter(checkAdult);
-                    // //console.log('newdata',newdata);
-                    // function checkAdult(oject) {
-                    // return oject.thirdanswer.date == start.format('YYYY-DD-MM HH:MM:SS');
-                    // }
-                    // thirdanswer:
-                    // date: "2022-05-24 15:30"
-                    var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>Sr.No</th>';
-                    list += '<th>Patient Name</th>';
-                    list += '<th>Patient Number</th>';
-                    list += '<th>Time</th></tr></thead><tbody>';
-                        $.each(newdata, function(i, filterdata) {
-                            console.log('filterdata',filterdata);
 
-                            let firstanswer = filterdata.firstanswer;
-                            let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
-                            let thirdanswer = filterdata.thirdanswer == undefined ? "" :filterdata.thirdanswer.date;
-                            // const d = new Date();
-                            // let time = d.getTime(thirdanswer);
-                            list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
-                            t++;
-                        });
-                    list += "</tbody></table>";
-                    $('#new_list').html(list);
+                        list += '<th>Time</th></tr></thead><tbody>';
+                        if (response.role == 'receptionist') {
+
+                            $.each(data, function(i, appointments) {
+                                let DFirst_name = appointments.doctor.first_name;
+                                let DLast_name = appointments.doctor.last_name;
+                                let PFirst_name = appointments.patient.first_name;
+                                let PLast_name = appointments.patient.last_name;
+                                let from = appointments.time_slot.from;
+                                let to = appointments.time_slot.to;
+                                let mobile = appointments.patient.mobile
+                                list += "<tr><td>" + t + "</td><td>" + DFirst_name + "&nbsp;" + DLast_name + "</td><td>" + PFirst_name + "&nbsp;" + PLast_name + "</td><td>" + mobile + "</td><td>" + from + " to " + to +
+                                    "</td></td>";
+                                t++;
+                            });
+
+                        } else if (response.role == 'patient') {
+                            $.each(data, function(i, appointments) {
+                                let first_name = appointments.doctor.first_name;
+                                let last_name = appointments.doctor.last_name;
+                                let from = appointments.time_slot.from;
+                                let to = appointments.time_slot.to;
+                                let mobile = appointments.doctor.mobile
+                                list += "<tr><td>" + t + "</td><td>" + first_name + "&nbsp;" + last_name + "</td><td>" + mobile + "</td><td>" + from + " to " + to +
+                                    "</td></td>";
+                                t++;
+                            });
+
+                        } else if (response.role == 'doctor') {
+                            $.each(data, function(i, appointments) {
+                                let first_name = appointments.patient.first_name;
+                                let last_name = appointments.patient.last_name;
+                                let from = appointments.time_slot.from;
+                                let to = appointments.time_slot.to;
+                                let mobile = appointments.patient.mobile
+                                list += "<tr><td>" + t + "</td><td>" + first_name + "&nbsp;" + last_name + "</td><td>" + mobile + "</td><td>" + from + " to " + to +
+                                    "</td></td>";
+                                t++;
+                            });
+
+                        }
+                        list += "</tbody></table>";
+
+                        $('#new_list').html(list);
+                    }
                 },
                 error: function() {
                     console.log('Errors...Something went wrong!!!!');
@@ -147,16 +167,16 @@ $(document).ready(function() {
         events: function(start, end, timezone, callback) {
             var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD')
             var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD')
+                // console.log(start);
             $.ajax({
                 type: "get",
-                url: "/cal-appointment-show",
+                url: "/appointment_filter",
                 data: {
                     start: start,
                     end: end,
                     title: 'appointment',
                 },
                 success: function(response) {
-                    console.log('response',response);
                     var events = [];
                     $(response.appointments).each(function(key, value) {
                         events.push({

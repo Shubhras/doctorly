@@ -50,6 +50,7 @@ Route::get('doctor-view/{id}', 'DoctorController@doctor_view');
 
 // appointment routes
 Route::get('appointmentList', 'AppointmentController@appointment_list');
+Route::get('all-appointmentList', 'AppointmentController@all_appointment_list');
 Route::post('appointment-status/{id}', 'AppointmentController@appointment_status');
 Route::get('getMonthlyAppointments', 'ReportController@getMonthlyAppointments');
 Route::post('patient-by-appointment', 'InvoiceController@patient_by_appointment')->name('patient_by_appointment');
@@ -59,6 +60,7 @@ Route::post('/appointment-time-by-appointment-slot', 'AppointmentController@time
 Route::get('appointment-create', 'AppointmentController@appointment_create');
 Route::post('appointment-store', 'AppointmentController@appointment_store');
 Route::get('/cal-appointment-show', 'AppointmentController@cal_appointment_show');
+Route::get('/appointment-filter', 'AppointmentController@appointment_filter');
 Route::get('pending-appointment', 'AppointmentController@pending_appointment');
 Route::get('upcoming-appointment', 'AppointmentController@upcoming_appointment');
 Route::get('complete-appointment', 'AppointmentController@complete_appointment');

@@ -87,7 +87,10 @@
                                             ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php elseif($role == 'doctor'): ?>
-                                        <?php $__currentLoopData = $appointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php
+                                        $i = 1;
+                                    ?>
+                                        <!-- <?php $__currentLoopData = $appointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td> <?php echo e($i); ?> </td>
                                                 <td><?php echo e($appointment->patient->first_name . ' ' . $appointment->patient->last_name); ?>
@@ -102,7 +105,39 @@
                                             <?php
                                                 $i++;
                                             ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
+                                        <?php $__currentLoopData = $newData; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item =>$key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($i); ?> </td>
+                                                <?php if(empty($key->firstanswer)): ?>
+                                                <td></td>
+                                                <?php else: ?>
+                                                <td><?php echo e($key->firstanswer); ?></td>
+                                                <?php endif; ?>
+                                                <?php 
+                                                if(empty($key->sevenhanswer->phone)){
+                                                    ?><td></td><?php
+                                                }else{
+                                                    $area = json_decode(json_encode($key->sevenhanswer->area), true);
+                                                    $phone_no = json_decode(json_encode($key->sevenhanswer->phone), true);
+                                                    ?><td> (<?php echo e($area); ?>)<?php echo e($phone_no); ?> </td><?php
+                                                }?>
+                                                <?php
+                                                if (empty($key->thirdanswer->date)) {
+                                                    ?> <td></td><?php
+                                                }
+                                                else{
+                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                    $newDate = date("d-m-Y", strtotime($date1));
+                                                    ?><td> <?php echo e($newDate); ?> </td><?php
+                                                }
+                                                ?>
+                                                <td> </td>
+                                            </tr>
+                                            <?php
+                                            $i++;
+                                            ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
                                     <?php elseif($role == 'patient'): ?>
                                         <?php $__currentLoopData = $appointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
@@ -139,6 +174,9 @@
         <!-- Get App url in Javascript file -->
         <script type="text/javascript">
             var aplist_url = "<?php echo e(url('appointmentList')); ?>";
+        </script>
+        <script type="text/javascript">
+            var apilist_url = "<?php echo e(url('all-appointmentList')); ?>";
         </script>
         <!-- Init js-->
         <script src="<?php echo e(URL::asset('assets/js/pages/calendar-init.js')); ?>"></script>

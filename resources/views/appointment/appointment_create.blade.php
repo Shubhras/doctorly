@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="card">
                 <iframe id="JotFormIFrame-221297017399160" title="BTC Scheduling" src="https://hipaa.jotform.com/app/221297017399160?appEmbedded=1" style="height:1200px;border: 0;"></iframe>
-                    <div class="card-body" style="display:none;">
+                    <div class="card-body">
                         <blockquote>{{ __('Book Appointment') }}</blockquote>
                         <form action="{{ url('appointment-store') }}" id="" method="POST">
                             @csrf
@@ -199,6 +199,9 @@
         <!-- Get App url in Javascript file -->
         <script type="text/javascript">
             var aplist_url ="{{ url('appointmentList') }}";
+        </script>
+        <script type="text/javascript">
+            var apilist_url ="{{ url('all-appointmentList') }}";
         </script>
         <!-- Init js-->
         <script src="{{ URL::asset('assets/js/pages/form-advanced.init.js') }}"></script>

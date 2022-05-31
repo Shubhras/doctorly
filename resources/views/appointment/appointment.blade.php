@@ -84,7 +84,10 @@
                                             @endphp
                                         @endforeach
                                     @elseif ($role == 'doctor')
-                                        @foreach ($appointments as $appointment)
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                        <!-- @foreach ($appointments as $appointment)
                                             <tr>
                                                 <td> {{ $i }} </td>
                                                 <td>{{ $appointment->patient->first_name . ' ' . $appointment->patient->last_name }}
@@ -97,7 +100,39 @@
                                             @php
                                                 $i++;
                                             @endphp
-                                        @endforeach
+                                        @endforeach -->
+                                        @foreach ($newData as $item =>$key)
+                                            <tr>
+                                                <td>{{$i}} </td>
+                                                @if(empty($key->firstanswer))
+                                                <td></td>
+                                                @else
+                                                <td>{{ $key->firstanswer }}</td>
+                                                @endif
+                                                <?php 
+                                                if(empty($key->sevenhanswer->phone)){
+                                                    ?><td></td><?php
+                                                }else{
+                                                    $area = json_decode(json_encode($key->sevenhanswer->area), true);
+                                                    $phone_no = json_decode(json_encode($key->sevenhanswer->phone), true);
+                                                    ?><td> ({{$area}}){{$phone_no}} </td><?php
+                                                }?>
+                                                <?php
+                                                if (empty($key->thirdanswer->date)) {
+                                                    ?> <td></td><?php
+                                                }
+                                                else{
+                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                    $newDate = date("d-m-Y", strtotime($date1));
+                                                    ?><td> {{$newDate}} </td><?php
+                                                }
+                                                ?>
+                                                <td> </td>
+                                            </tr>
+                                            @php
+                                            $i++;
+                                            @endphp
+                                        @endforeach    
                                     @elseif ($role == 'patient')
                                         @foreach ($appointments as $appointment)
                                             <tr>
@@ -132,6 +167,9 @@
         <!-- Get App url in Javascript file -->
         <script type="text/javascript">
             var aplist_url = "{{ url('appointmentList') }}";
+        </script>
+        <script type="text/javascript">
+            var apilist_url = "{{ url('all-appointmentList') }}";
         </script>
         <!-- Init js-->
         <script src="{{ URL::asset('assets/js/pages/calendar-init.js') }}"></script>

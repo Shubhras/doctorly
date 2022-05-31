@@ -59,6 +59,33 @@ class AppointmentController extends Controller
      */
     public function create()
     {
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
+        $response = $request->getBody()->getContents();
+        $jotform_data = json_decode($response); 
+        $newData = array();
+        foreach($jotform_data->content as $key=> $jotforms_data){
+            $jotform_ans= $jotforms_data->answers;
+            $newData1 = array();
+            $object = new \stdClass();
+            foreach($jotform_ans as $jotform_t_ans){
+                if((isset($jotform_t_ans->answer))){
+                   $newData1[] = array("answer" => $jotform_t_ans->answer);
+                   //print_r($newData1);
+                }
+            }
+            $object->firstanswer = $newData1[0]['answer'];
+            $object->secondanswer = $newData1[1]['answer'];
+            $object->thirdanswer = $newData1[2]['answer'];
+            $object->fourthanswer = $newData1[3]['answer'];
+            $object->fifthanswer = $newData1[4]['answer'];
+            $object->sixanswer = $newData1[5]['answer'];
+            if(!empty($newData1[6]['answer'])){
+            $object->sevenhanswer = $newData1[6]['answer'];
+            }
+            $newData[] = $object;
+        }
+
         $user = Sentinel::getUser();
         if ($user->hasAccess('appointment.create')) {
             $userId = $user->id;
@@ -79,9 +106,9 @@ class AppointmentController extends Controller
                         $re->orWhereIN('booked_by', $receptionists_doctor_id);
                         $re->orWhere('booked_by', $userId);
                     })->where('appointment_date', Carbon::today())
-                    ->get();
-            }
-            return view('appointment.appointment', compact('user', 'role', 'patients', 'doctors', 'appointments'));
+                    ->get(); 
+                       }
+            return view('appointment.appointment', compact('user', 'role', 'patients', 'doctors', 'appointments', 'newData'));
         } else {
             return view('error.403');
         }
@@ -170,6 +197,39 @@ class AppointmentController extends Controller
             ];
         }
         return response()->json($response);
+    }
+    public function all_appointment_list(Request $request)
+    {
+        if ($request->ajax()) {
+            $user = Sentinel::getUser();
+            $userId = $user->id;
+            $client = new \GuzzleHttp\Client();
+            $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
+            $response = $request->getBody()->getContents();
+            $jotform_data = json_decode($response); 
+            $newData = array();
+            foreach($jotform_data->content as $key=> $jotforms_data){
+                $jotform_ans= $jotforms_data->answers;
+                $newData1 = array();
+                $object = new \stdClass();
+                foreach($jotform_ans as $jotform_t_ans){
+                    if((isset($jotform_t_ans->answer))){
+                       $newData1[] = array("answer" => $jotform_t_ans->answer);
+                    }
+                }
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                $object->sixanswer = $newData1[5]['answer'];
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
+            }
+            return response()->json($newData);
+        }
     }
     public function AppointmentList(User $patient)
     {
@@ -721,6 +781,7 @@ class AppointmentController extends Controller
     }
 
     public function cal_appointment_show(Request $request)
+    
     {
         if ($request->ajax()) {
             $user = Sentinel::getUser();
@@ -731,35 +792,62 @@ class AppointmentController extends Controller
                     ->whereDate('appointment_date', '>=', $request->start)
                     ->whereDate('appointment_date',   '<=', $request->end)
                     ->groupBy(DB::raw('appointment_date'))->where('appointment_with', $user->id)->get();
-            } elseif ($role == 'patient') {
-                $appointment = Appointment::select(DB::raw('count(id) as `total_appointment`'), DB::raw('appointment_date'))
-                    ->whereDate('appointment_date', '>=', $request->start)
-                    ->whereDate('appointment_date',   '<=', $request->end)
-                    ->groupBy(DB::raw('appointment_date'))->where('appointment_for', $user->id)->get();
-            } elseif ($role == 'receptionist') {
-                $receptionists_doctor_id = ReceptionListDoctor::where('reception_id', $userId)->pluck('doctor_id');
-                $appointment = Appointment::select(DB::raw('count(id) as `total_appointment`'), DB::raw('appointment_date'))
-                    ->whereDate('appointment_date', '>=', $request->start)
-                    ->whereDate('appointment_date',   '<=', $request->end)
-                    ->where(function ($re) use ($userId, $receptionists_doctor_id) {
-                        $re->whereIN('appointment_with', $receptionists_doctor_id);
-                        $re->orWhereIN('booked_by', $receptionists_doctor_id);
-                        $re->orWhere('booked_by', $userId);
-                    })
-                    ->groupBy(DB::raw('appointment_date'))->get();
-            }
+            } 
+            
             if (empty($appointment)) {
                 $response = [
                     'status' => 'error',
                     'message' => 'No Appointments Found On '
                 ];
-            } else {
+            } 
+            else {
                 $response = [
                     'role' => $role,
                     'appointments' => $appointment
                 ];
             }
             return response()->json($response);
+        }
+    }
+
+    public function appointment_filter(Request $request)
+    {
+        if ($request->ajax()) {
+            $user = Sentinel::getUser();
+            $userId = $user->id;
+            $client = new \GuzzleHttp\Client();
+            $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
+            $response = $request->getBody()->getContents();
+            $jotform_data = json_decode($response); 
+            $newData = array();
+            foreach($jotform_data->content as $key=> $jotforms_data){
+                $jotform_ans= $jotforms_data->answers;
+                $newData1 = array();
+                $object = new \stdClass();
+                foreach($jotform_ans as $jotform_t_ans){
+                    if((isset($jotform_t_ans->answer))){
+                       $newData1[] = array("answer" => $jotform_t_ans->answer);
+                    }
+                }
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                $object->sixanswer = $newData1[5]['answer'];
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
+                   $start_date = Carbon::parse($request->$newData1)
+                                         ->toDateTimeString();
+        
+                   return User::whereBetween('created_at', [
+                     $start_date, $end_date
+                   ])->get();
+                }
+            return response()->$newData;
         }
     }
 
