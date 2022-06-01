@@ -3,9 +3,7 @@
  Author: Lndinghub(Themesbrand)
  File: Calendar Init
  */
-
-
-$(document).ready(function() {
+$(document).ready(function () {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -21,7 +19,7 @@ $(document).ready(function() {
     /* initialize the external events
      -----------------------------------------------------------------*/
 
-    $('#external-events div.external-event').each(function() {
+    $('#external-events div.external-event').each(function () {
 
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
@@ -73,7 +71,7 @@ $(document).ready(function() {
         },
         events: SITEURL + "/cal-appointment-show",
         displayEventTime: true,
-        eventRender: function(event, element, view) {
+        eventRender: function (event, element, view) {
             if (event.allDay === 'true') {
                 event.allDay = true;
             } else {
@@ -83,10 +81,10 @@ $(document).ready(function() {
 
         allDaySlot: false,
         selectHelper: true,
-        select: function(start, end, allDay) {
+        select: function (start, end, allDay) {
             var dt = start.format('YYYY/MM/DD');
             $('#selected_date').html(start.format('YYYY-DD-MM'));
-            //console.log(start.format('YYYY-DD-MM'));
+            var startFormatDate = start.format('YYYY-DD-MM');
             $('#appointment_list').hide();
             $('#new_list').show();
             $.ajax({
@@ -94,71 +92,130 @@ $(document).ready(function() {
                 url: apilist_url,
                 data: { date: dt },
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     var t = 1;
                     var data = response;
-
                     var newArray = [];
-                    for(let i = 0; i < data.length; i++){
-                        let date = new Date(data[i].thirdanswer, 'YYYY/MM/DD');
-                        if(data[i].thirdanswer != undefined){
-                            newArray.push({"fifthanswer": data[i].fifthanswer,
-                            "firstanswer": data[i].firstanswer,
-                            "fourthanswer": data[i].fourthanswer,
-                            "secondanswer": data[i].secondanswer,
-                            "sixanswer": data[i].sixanswer,
-                            "thirdanswer":{
-                                "date": date
-                            }});
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].thirdanswer != undefined) {
+                            var date = moment(data[i].thirdanswer.date).format("YYYY-DD-MM");
+                            newArray.push({
+                                "fifthanswer": data[i].fifthanswer,
+                                "firstanswer": data[i].firstanswer,
+                                "fourthanswer": data[i].fourthanswer,
+                                "secondanswer": data[i].secondanswer,
+                                "sixanswer": data[i].sixanswer,
+                                "sevenhanswer": data[i].sevenhanswer,
+                                "thirdanswer": {
+                                    "date": date
+                                }
+                            });
                         }
                     }
-                    console.log("dd",newArray);
-                    // var newdata = data.filter(checkAdult);
-                    // //console.log('newdata',newdata);
-                    // function checkAdult(oject) {
-                    // return oject.thirdanswer.date == start.format('YYYY-DD-MM HH:MM:SS');
-                    // }
-                    // thirdanswer:
-                    // date: "2022-05-24 15:30"
+                    var newdata = newArray.filter(checkAdult);
+                    function checkAdult(oject) {
+                        return oject.thirdanswer.date == startFormatDate;
+                    }
                     var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>Sr.No</th>';
                     list += '<th>Patient Name</th>';
                     list += '<th>Patient Number</th>';
                     list += '<th>Time</th></tr></thead><tbody>';
-                        $.each(newdata, function(i, filterdata) {
-                            console.log('filterdata',filterdata);
-
-                            let firstanswer = filterdata.firstanswer;
-                            let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
-                            let thirdanswer = filterdata.thirdanswer == undefined ? "" :filterdata.thirdanswer.date;
-                            // const d = new Date();
-                            // let time = d.getTime(thirdanswer);
-                            list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
-                            t++;
-                        });
+                    $.each(newdata, function (i, filterdata) {
+                        let firstanswer = filterdata.firstanswer;
+                        let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
+                        let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
+                        list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                        t++;
+                    });
                     list += "</tbody></table>";
                     $('#new_list').html(list);
                 },
-                error: function() {
+                error: function () {
                     console.log('Errors...Something went wrong!!!!');
                 }
             });
             calendar.fullCalendar('unselect');
         },
-        events: function(start, end, timezone, callback) {
+        events: function (start, end, timezone, callback) {
             var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD')
             var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD')
             $.ajax({
                 type: "get",
-                url: "/cal-appointment-show",
+                url: "/appointment-filter",
                 data: {
                     start: start,
                     end: end,
                     title: 'appointment',
                 },
-                success: function(response) {
-                    console.log('response',response);
+                success: function (response) {
+                    const new_data = [];
+                    for (let index = 0; index < response.length; index++) {
+                        // console.log('kajshka',response[index]['thirdanswer']);
+                        if (response[index]['thirdanswer']['date'] != undefined) {
+                            // const element = response[index];
+                            // var date = moment(data[i].thirdanswer.date).format("YYYY-DD-MM");
+                            // console.log((response[index]['thirdanswer']['date'].toLocaleDateString()));
+                            // var date = new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10);
+                            new_data.push({
+                                date: new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10)
+                            });
+                            //   date.toISOString().slice(0,10)
+                            // console.log(date.toDateString());
+
+                        }
+                    }
+                    var k = 0;
+                    const new_data1 = [];
+                    const cot = [];
+
+                    for (var i = 1; i < new_data.length; i++) {
+                        console.log(new_data[i]['date']);
+                        // for (var j = 0; j < i; j++) {
+                        //     if (new_data[i]['date'] == new_data[j]['date']) {
+                        //         cot.push({
+                        //                 total_appointment: k,
+                        //                 appointment_date: new_data[j]['date'],
+                        //             });
+                        //            k++;
+                        //         //    console.log(new_data[j]['date']);
+                        //     } else {
+                        //         new_data1.push({
+                        //             total_appointment: 1,
+                        //             appointment_date: new_data[j]['date'],
+                        //         });
+                        //     }
+                        // }
+                    }
+
+                    // var myArr = ['apple', 'apple', 'orange', 'apple', 'banana', 'orange', 'pineapple'];
+                    // var result = Object.keys(new_data).map((key) => [Number(new_data), new_data[key]]);
+                    // console.log(result);
+                    // var obj = {};   
+                    // new_data.forEach(function (item) {
+                    //     if (typeof obj[item] == 'number') {
+                    //         obj[item]++;
+                    //     } else {
+                    //         obj[item] = 1;
+                    //     }
+                    // });
+                    // console.log(obj);
+                    // function groupArrayOfObjects(list, key) {
+                    //     return list.reduce(function(rv, x) {
+                    //       (rv[x[key]] = rv[x[key]] || []).push(x);
+                    //       return rv;
+                    //     }, {});
+                    //   };
+                    //   var groupedPeople=groupArrayOfObjects(cot,'appointment_date');
+
+                    // console.log(new_data[j]['date']);
+                    // let result = inventory.groupBy( ({ appointment_date }) => type );
+                    // new_data1.push({
+                    //     total_appointment: 2,
+                    //     appointment_date: '2022-05-20',
+                    // });
+                    // console.log(new_data);
                     var events = [];
-                    $(response.appointments).each(function(key, value) {
+                    $(new_data1).each(function (key, value) {
                         events.push({
                             title: value.total_appointment + ' Appointment',
                             start: value.appointment_date,
@@ -168,7 +225,7 @@ $(document).ready(function() {
                     });
                     callback(events);
                 },
-                error: function(response) {
+                error: function (response) {
                     console.log(response);
                 }
             });

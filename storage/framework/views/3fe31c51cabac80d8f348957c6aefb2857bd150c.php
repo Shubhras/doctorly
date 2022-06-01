@@ -17,6 +17,7 @@
         <!-- Plugin Js-->
         <script src="<?php echo e(URL::asset('assets/libs/apexcharts/apexcharts.min.js')); ?>"></script>
         <script src="<?php echo e(URL::asset('assets/js/pages/dashboard.init.js')); ?>"></script>
+        <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script>
     <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/index.blade.php ENDPATH**/ ?>
