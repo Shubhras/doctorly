@@ -843,15 +843,9 @@ class AppointmentController extends Controller
                        $newData1[] = array("answer" => $jotform_t_ans->answer);
                     }
                 }
-                // $object->firstanswer = $newData1[0]['answer'];
-                // $object->secondanswer = $newData1[1]['answer'];
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
                 $object->thirdanswer = $newData1[2]['answer'];
-                // $object->fourthanswer = $newData1[3]['answer'];
-                // $object->fifthanswer = $newData1[4]['answer'];
-                // $object->sixanswer = $newData1[5]['answer'];
-                // if(!empty($newData1[6]['answer'])){
-                // $object->sevenhanswer = $newData1[6]['answer'];
-                // }
                 $newData[] = $object;
             }
             return response()->json($newData);

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>@yield('title') | {{ config('app.name') }} - Patient Management System </title>
+    <title>@yield('title') | BTC Latam Group </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Hospital Management System" name="description" />
     <meta content="Doctorly" name="author" />

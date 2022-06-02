@@ -83,8 +83,8 @@ $(document).ready(function () {
         selectHelper: true,
         select: function (start, end, allDay) {
             var dt = start.format('YYYY/MM/DD');
-            $('#selected_date').html(start.format('YYYY-DD-MM'));
-            var startFormatDate = start.format('YYYY-DD-MM');
+            $('#selected_date').html(start.format('YYYY-MM-DD'));
+            var startFormatDate = start.format('YYYY-MM-DD');
             $('#appointment_list').hide();
             $('#new_list').show();
             $.ajax({
@@ -98,7 +98,7 @@ $(document).ready(function () {
                     var newArray = [];
                     for (let i = 0; i < data.length; i++) {
                         if (data[i].thirdanswer != undefined) {
-                            var date = moment(data[i].thirdanswer.date).format("YYYY-DD-MM");
+                            var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
                             newArray.push({
                                 "fifthanswer": data[i].fifthanswer,
                                 "firstanswer": data[i].firstanswer,
@@ -113,13 +113,13 @@ $(document).ready(function () {
                         }
                     }
                     var newdata = newArray.filter(checkAdult);
-                    function checkAdult(oject) {
-                        return oject.thirdanswer.date == startFormatDate;
+                    function checkAdult(object) {
+                        return object.thirdanswer.date == startFormatDate;
                     }
-                    var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>Sr.No</th>';
-                    list += '<th>Patient Name</th>';
-                    list += '<th>Patient Number</th>';
-                    list += '<th>Time</th></tr></thead><tbody>';
+                    var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
+                    list += '<th>Paciente</th>';
+                    list += '<th>Teléfono</th>';
+                    list += '<th>Hora</th></tr></thead><tbody>';
                     $.each(newdata, function (i, filterdata) {
                         let firstanswer = filterdata.firstanswer;
                         let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
@@ -139,6 +139,7 @@ $(document).ready(function () {
         events: function (start, end, timezone, callback) {
             var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD')
             var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD')
+            $('#new_list').show();
             $.ajax({
                 type: "get",
                 url: "/appointment-filter",
@@ -148,71 +149,39 @@ $(document).ready(function () {
                     title: 'appointment',
                 },
                 success: function (response) {
+                    //console.log('appoinmentfilterresponse',response);
                     const new_data = [];
+                    const newDublicate = [];
                     for (let index = 0; index < response.length; index++) {
-                        // console.log('kajshka',response[index]['thirdanswer']);
                         if (response[index]['thirdanswer']['date'] != undefined) {
-                            // const element = response[index];
-                            // var date = moment(data[i].thirdanswer.date).format("YYYY-DD-MM");
-                            // console.log((response[index]['thirdanswer']['date'].toLocaleDateString()));
-                            // var date = new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10);
                             new_data.push({
                                 date: new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10)
                             });
-                            //   date.toISOString().slice(0,10)
-                            // console.log(date.toDateString());
-
+                            newDublicate.push({
+                                date: new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10)
+                            });
                         }
                     }
-                    var k = 0;
                     const new_data1 = [];
-                    const cot = [];
-
-                    for (var i = 1; i < new_data.length; i++) {
-                        console.log(new_data[i]['date']);
-                        // for (var j = 0; j < i; j++) {
-                        //     if (new_data[i]['date'] == new_data[j]['date']) {
-                        //         cot.push({
-                        //                 total_appointment: k,
-                        //                 appointment_date: new_data[j]['date'],
-                        //             });
-                        //            k++;
-                        //         //    console.log(new_data[j]['date']);
-                        //     } else {
-                        //         new_data1.push({
-                        //             total_appointment: 1,
-                        //             appointment_date: new_data[j]['date'],
-                        //         });
-                        //     }
-                        // }
+                    var clean = newDublicate.filter((newDublicate, index, self) =>
+                        index === self.findIndex((t) => (t.date === newDublicate.date)));
+                    if(newDublicate.length > 0){
+                        var clean = newDublicate.filter((newDublicate, index, self) =>
+                        index === self.findIndex((t) => (t.date === newDublicate.date)));
+                        console.log("clean",clean);
+                        for (let o = 0; o < clean.length; o++) {
+                            var countData = new_data.filter(checkDate);
+                            function checkDate(object) {
+                                return object.date == clean[o].date;
+                            }
+                            new_data1.push({
+                                total_appointment: countData.length,
+                                appointment_date: clean[o].date,
+                            });
+                        }
                     }
-
-                    // var myArr = ['apple', 'apple', 'orange', 'apple', 'banana', 'orange', 'pineapple'];
-                    // var result = Object.keys(new_data).map((key) => [Number(new_data), new_data[key]]);
-                    // console.log(result);
-                    // var obj = {};   
-                    // new_data.forEach(function (item) {
-                    //     if (typeof obj[item] == 'number') {
-                    //         obj[item]++;
-                    //     } else {
-                    //         obj[item] = 1;
-                    //     }
-                    // });
-                    // console.log(obj);
-                    // function groupArrayOfObjects(list, key) {
-                    //     return list.reduce(function(rv, x) {
-                    //       (rv[x[key]] = rv[x[key]] || []).push(x);
-                    //       return rv;
-                    //     }, {});
-                    //   };
-                    //   var groupedPeople=groupArrayOfObjects(cot,'appointment_date');
-
-                    // console.log(new_data[j]['date']);
-                    // let result = inventory.groupBy( ({ appointment_date }) => type );
-                    // new_data1.push({
-                    //     total_appointment: 2,
-                    //     appointment_date: '2022-05-20',
-                    // });
+                    // var currentdata = [];
+                    // if(new Date().toISOString().slice(0, 10));
                     // console.log(new_data);
                     var events = [];
                     $(new_data1).each(function (key, value) {
@@ -222,7 +191,7 @@ $(document).ready(function () {
                             end: value.appointment_date,
                             className: 'bg-success text-white',
                         });
-                    });
+                    });http://127.0.0.1:8000/appointment/create
                     callback(events);
                 },
                 error: function (response) {

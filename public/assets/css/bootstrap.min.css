@@ -595,7 +595,7 @@ pre code {
   /* background-color: #40ccd5; */
   background-color: #359197;
   padding: 40px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 .bg-login-logo{
   background-color: #000000!important;
