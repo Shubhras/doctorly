@@ -139,7 +139,6 @@ $(document).ready(function () {
         events: function (start, end, timezone, callback) {
             var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD')
             var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD')
-            $('#new_list').show();
             $.ajax({
                 type: "get",
                 url: "/appointment-filter",
@@ -153,6 +152,7 @@ $(document).ready(function () {
                     const new_data = [];
                     const newDublicate = [];
                     for (let index = 0; index < response.length; index++) {
+                        // console.log('kajshka',response[index]['thirdanswer']);
                         if (response[index]['thirdanswer']['date'] != undefined) {
                             new_data.push({
                                 date: new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10)
@@ -163,9 +163,8 @@ $(document).ready(function () {
                         }
                     }
                     const new_data1 = [];
-                    var clean = newDublicate.filter((newDublicate, index, self) =>
-                        index === self.findIndex((t) => (t.date === newDublicate.date)));
                     if(newDublicate.length > 0){
+                        console.log("new_data",new_data);
                         var clean = newDublicate.filter((newDublicate, index, self) =>
                         index === self.findIndex((t) => (t.date === newDublicate.date)));
                         console.log("clean",clean);
@@ -180,8 +179,6 @@ $(document).ready(function () {
                             });
                         }
                     }
-                    // var currentdata = [];
-                    // if(new Date().toISOString().slice(0, 10));
                     // console.log(new_data);
                     var events = [];
                     $(new_data1).each(function (key, value) {
@@ -191,7 +188,7 @@ $(document).ready(function () {
                             end: value.appointment_date,
                             className: 'bg-success text-white',
                         });
-                    });http://127.0.0.1:8000/appointment/create
+                    });
                     callback(events);
                 },
                 error: function (response) {
