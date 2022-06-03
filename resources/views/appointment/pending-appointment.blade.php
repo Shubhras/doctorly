@@ -70,7 +70,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $newData ?>
                                             <?php
                                             $count= 1;
                                             ?>
@@ -123,11 +122,11 @@
                                                         ?><td> {{$newTime}} </td><?php
                                                     }
                                                     ?>
-                                                    <!-- @if(empty($key->fourthanswer))
+                                                    @if(empty($key->fourthanswer))
                                                     <td></td>
                                                     @else
                                                     <td> {{ $key->fourthanswer }} </td>
-                                                    @endif -->
+                                                    @endif
                                                     <td> </td>
                                                 </tr>
                                                 <?php

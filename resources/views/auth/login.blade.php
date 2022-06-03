@@ -1,5 +1,6 @@
 @extends('layouts.master-without-nav')
 @section('title') {{ __("Login") }} @endsection
+@section('body')
 <header id="page-topbar" class="login-header-bg-color">
     <div class="navbar-header">
         <div class="d-flex">
@@ -113,7 +114,6 @@
         </div>
     </div>
 </header>
-@section('body')
 <body>
 @endsection
 @section('content')

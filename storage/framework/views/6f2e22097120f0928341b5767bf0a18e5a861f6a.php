@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo $__env->yieldContent('title'); ?> | BTC Latam Group</title>
+    <title><?php echo $__env->yieldContent('title'); ?> | BTC Latam Group1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Hospital Management System" name="description" />
     <meta content="Doctorly" name="author" />

@@ -1,4 +1,5 @@
 <?php $__env->startSection('title'); ?> <?php echo e(__("Login")); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
 <header id="page-topbar" class="login-header-bg-color">
     <div class="navbar-header">
         <div class="d-flex">
@@ -113,7 +114,6 @@
         </div>
     </div>
 </header>
-<?php $__env->startSection('body'); ?>
 <body>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>

@@ -33,8 +33,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                <iframe id="JotFormIFrame-221297017399160" title="BTC Scheduling" src="https://hipaa.jotform.com/app/221297017399160?appEmbedded=1" style="height:1200px;border: 0;"></iframe>
-                    <div class="card-body">
+                <iframe id="JotFormIFrame-221297017399160" title="BTC Scheduling" src="https://hipaa.jotform.com/app/221297017399160?appEmbedded=1" style="height:1400px;border: 0;"></iframe>
+                    <div class="card-body" style=display:none;>
                         <blockquote>{{ __('Book Appointment') }}</blockquote>
                         <form action="{{ url('appointment-store') }}" id="" method="POST">
                             @csrf

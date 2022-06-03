@@ -8,7 +8,7 @@
     <meta content="Hospital Management System" name="description" />
     <meta content="Doctorly" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">    
     @include('layouts.head')
 </head>
 
