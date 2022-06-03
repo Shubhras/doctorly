@@ -112,7 +112,7 @@
                                         <label for="username">{{ __("Usuario") }}</label>
                                         <input name="email" type="email" id="email"
                                             class="form-control @error('email') is-invalid @enderror"
-                                            @if (old('email')) value="{{ old('email') }}" @else value="admin@themesbrand.website" @endif id="username" placeholder="Enter username"
+                                            @if (old('email')) value="{{ old('email') }}" @else value="" @endif id="username" placeholder="Enter username"
                                             autocomplete="email" autofocus>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -124,7 +124,7 @@
                                         <label for="userpassword">{{ __("Contraseña") }}</label>
                                         <input type="password" name="password" id="pass"
                                             class="form-control  @error('password') is-invalid @enderror"
-                                            id="userpassword" @if (old('password')) value="{{ old('password') }}" @else value="admin@123456" @endif placeholder="Enter password">
+                                            id="userpassword" @if (old('password')) value="{{ old('password') }}" @else value="" @endif placeholder="Enter password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
