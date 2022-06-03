@@ -87,7 +87,7 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                        <!-- @foreach ($appointments as $appointment)
+                                        @foreach ($appointments as $appointment)
                                             <tr>
                                                 <td> {{ $i }} </td>
                                                 <td>{{ $appointment->patient->first_name . ' ' . $appointment->patient->last_name }}
@@ -100,8 +100,8 @@
                                             @php
                                                 $i++;
                                             @endphp
-                                        @endforeach -->
-                                        @foreach ($newData as $item =>$key)
+                                        @endforeach
+                                        <!-- @foreach ($newData as $item =>$key)
                                             <tr>
                                                 <td>{{$i}} </td>
                                                 @if(empty($key->firstanswer))
@@ -132,7 +132,7 @@
                                             @php
                                             $i++;
                                             @endphp
-                                        @endforeach    
+                                        @endforeach     -->
                                     @elseif ($role == 'patient')
                                         @foreach ($appointments as $appointment)
                                             <tr>

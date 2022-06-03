@@ -606,6 +606,9 @@ pre code {
 .text-color{
   color: #359197;
 }
+.padd-top{
+  padding-top: 4rem;
+}
 @media (min-width: 576px) {
   .container {
     max-width: 540px;

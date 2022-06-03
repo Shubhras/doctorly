@@ -50,27 +50,6 @@
             <!-- App Search-->
         </div>
         <div class="d-flex">
-            <!-- <div class="dropdown d-inline-block d-lg-none ml-2">
-                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="mdi mdi-magnify"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                    aria-labelledby="page-header-search-dropdown">
-                    <form class="p-3">
-                        <div class="form-group m-0">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="{{ __("Search ...") }}"
-                                    aria-label="Recipient's username">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"><i
-                                            class="mdi mdi-magnify"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div> -->
             <div class="dropdown d-none d-lg-inline-block ml-1">
                 <span class="logo-lg" >
                     <img src="{{ URL::asset('assets/images/btc_logo1-new.png') }}" alt="" height="30">
@@ -82,35 +61,6 @@
                     <i class="bx bx-fullscreen icon-color"></i>
                 </button>
             </div>
-            <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon waves-effect"
-                    id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="bx bx-bell bx-tada icon-color"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                    aria-labelledby="page-header-notifications-dropdown">
-                    <div class="p-3">
-                        <div class="row align-items-center">
-                            <div class="col">
-                            </div>
-                            <div class="col-auto">
-                                <a href="{{ url('/notification-list') }}" class="small"> {{ __("View All") }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-2 border-top">
-                        <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="{{ url('/notification-list') }}">
-                            <i class="mdi mdi-arrow-right-circle mr-1"></i> {{ __("View More..") }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect ">
-                    <i class="bx bx-cog bx-spin"></i>
-                </button>
-            </div> -->
         </div>
     </div>
 </header>
@@ -124,13 +74,6 @@
                     <div class="card overflow-hidden">
                         <div class="bg-login-top">
                             <div class="row">
-                                <!-- <div class="col-7"> -->
-                                    <!-- <div class="text-primary p-3">
-                                        <h5 class="text-primary">{{ __("Welcome Back !") }}</h5> -->
-                                        <!-- <p>Sign in to continue to {{ config('app.name') }}.</p> -->
-                                        <!-- <p>Sign in to continue to {{"BTC Latam Group."}}</p>
-                                    </div> -->
-                                <!-- </div> -->
                                 <div class="col-6 align-self-end">
                                     <img src="{{ URL::asset('assets/images/btc_logo1-new.png') }}" alt=""
                                         class="img-fluid">
@@ -194,8 +137,6 @@
                                         <label class="custom-control-label" for="customControlInline">{{ __("recuérdame") }}</label>
                                     </div>
                                     <div class="mt-3">
-                                    <!-- <button class="btn btn-primary btn-block waves-effect waves-light"
-                                            type="submit">{{ __("Iniciar sesión") }}</button> -->
                                         <button class="btn btn-block waves-effect waves-light bg-btn"
                                             type="submit">{{ __("Iniciar sesión") }}</button>
                                     </div>
@@ -208,8 +149,8 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <p>{{ __("Don't have an account ?") }} <a href="{{ url('register') }}"
-                                class="font-weight-medium text-primary"> {{ __("Sign Up here") }}</a> </p>
+                        <!-- <p>{{ __("Don't have an account ?") }} <a href="{{ url('register') }}"
+                                class="font-weight-medium text-primary"> {{ __("Sign Up here") }}</a> </p> -->
                         <p>© {{ date('Y') }} {{ "BTC Latam Group" }}.</p>
                     </div>
                 </div>

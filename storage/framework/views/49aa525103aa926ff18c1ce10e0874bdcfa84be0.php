@@ -1,4 +1,5 @@
-<?php $__env->startSection('title'); ?> <?php echo e(__("Login")); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> <?php echo e(__("Forgot Password")); ?> <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('body'); ?>
 <header id="page-topbar" class="login-header-bg-color">
     <div class="navbar-header">
@@ -65,6 +66,7 @@
 </header>
 <body>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
     <div class="account-pages my-5 pt-5">
         <div class="container">
@@ -73,6 +75,12 @@
                     <div class="card overflow-hidden">
                         <div class="bg-login-top">
                             <div class="row">
+                                <!-- <div class="col-7">
+                                    <div class="text-primary p-4">
+                                        <h5 class="text-primary"> <?php echo e(__("Forgot Password")); ?></h5>
+                                        <p>Reset your password with <?php echo e(config('app.name')); ?>.</p>
+                                    </div>
+                                </div> -->
                                 <div class="col-6 align-self-end">
                                     <img src="<?php echo e(URL::asset('assets/images/btc_logo1-new.png')); ?>" alt=""
                                         class="img-fluid">
@@ -88,14 +96,13 @@
                                 <a href="<?php echo e(url('/')); ?>">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-login-logo">
-                                            <img src="<?php echo e(URL::asset('assets/images/login-logo.png')); ?>" alt=""
-                                                class="rounded-circle" height="50">
+                                        <img src="<?php echo e(URL::asset('assets/images/login-logo.png')); ?>" alt="" class="rounded-circle" height="50">
                                         </span>
                                     </div>
                                 </a>
                             </div>
                             <div class="p-2">
-                                <form class="form-horizontal" method="POST" action="<?php echo e(url('login')); ?>">
+                                <form class="form-horizontal" method="POST" action="<?php echo e(url('forgot-password')); ?>">
                                     <?php echo csrf_field(); ?>
                                     <?php if($msg = Session::get('error')): ?>
                                         <div class="alert alert-danger">
@@ -108,18 +115,15 @@
                                         </div>
                                     <?php endif; ?>
                                     <div class="form-group">
-                                        <label for="username"><?php echo e(__("Usuario")); ?></label>
-                                        <input name="email" type="email" id="email"
-                                            class="form-control <?php $__errorArgs = ['email'];
+                                        <label for="username"><?php echo e(__("Email")); ?></label>
+                                        <input name="email" type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-                                            <?php if(old('email')): ?> value="<?php echo e(old('email')); ?>" <?php else: ?> value="admin@themesbrand.website" <?php endif; ?> id="username" placeholder="Enter username"
-                                            autocomplete="email" autofocus>
+unset($__errorArgs, $__bag); ?>" <?php if(old('email')): ?> value="<?php echo e(old('email')); ?>" <?php endif; ?> id="username" placeholder="<?php echo e(__("Enter email")); ?>" autocomplete="email" autofocus>
                                         <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -133,59 +137,25 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="userpassword"><?php echo e(__("Contraseña")); ?></label>
-                                        <input type="password" name="password" id="pass"
-                                            class="form-control  <?php $__errorArgs = ['password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                            id="userpassword" <?php if(old('password')): ?> value="<?php echo e(old('password')); ?>" <?php else: ?> value="admin@123456" <?php endif; ?> placeholder="Enter password">
-                                        <?php $__errorArgs = ['password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong><?php echo e($message); ?></strong>
-                                            </span>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="remember"
-                                            id="customControlInline">
-                                        <label class="custom-control-label" for="customControlInline"><?php echo e(__("recuérdame")); ?></label>
-                                    </div>
-                                    <div class="mt-3">
-                                        <button class="btn btn-block waves-effect waves-light bg-btn"
-                                            type="submit"><?php echo e(__("Iniciar sesión")); ?></button>
-                                    </div>
-                                    <div class="mt-4 text-center">
-                                        <a href="<?php echo e(url('forgot-password')); ?>" class="text-muted"><i
-                                                class="mdi mdi-lock mr-1 text-color"></i> <?php echo e(__("¿Olvidaste tu contraseña?")); ?></a>
+                                    <div class="form-group row mb-0">
+                                        <div class="col-12 text-right">
+                                            <button class="btn w-md waves-effect waves-light bg-btn"
+                                                type="submit"><?php echo e(__("Reset")); ?></button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <!-- <p><?php echo e(__("Don't have an account ?")); ?> <a href="<?php echo e(url('register')); ?>"
-                                class="font-weight-medium text-primary"> <?php echo e(__("Sign Up here")); ?></a> </p> -->
+                        <p><?php echo e(__("Remember It ?")); ?> <a href="<?php echo e(url('login')); ?>" class="font-weight-medium text-primary"> <?php echo e(__("Sign In here")); ?></a> </p>
+                        <!-- <p>© <?php echo e(date('Y')); ?> <?php echo e(config('app.name')); ?>. Crafted with <i class="mdi mdi-heart text-danger"></i> <?php echo e(__("by Themesbrand")); ?></p> -->
                         <p>© <?php echo e(date('Y')); ?> <?php echo e("BTC Latam Group"); ?>.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-    </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/auth/login.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/auth/passwords/forgotPassword.blade.php ENDPATH**/ ?>
