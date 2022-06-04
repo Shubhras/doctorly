@@ -96,41 +96,76 @@ $(document).ready(function () {
                     var t = 1;
                     var data = response;
                     var newArray = [];
-                    for (let i = 0; i < data.length; i++) {
-                        if (data[i].thirdanswer != undefined) {
-                            var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
-                            newArray.push({
-                                "fifthanswer": data[i].fifthanswer,
-                                "firstanswer": data[i].firstanswer,
-                                "fourthanswer": data[i].fourthanswer,
-                                "secondanswer": data[i].secondanswer,
-                                "sixanswer": data[i].sixanswer,
-                                "sevenhanswer": data[i].sevenhanswer,
-                                "thirdanswer": {
-                                    "date": date
-                                }
-                            });
+                    if(data[0].fifthanswer!= undefined){
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i].thirdanswer != undefined) {
+                                var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
+                                newArray.push({
+                                    "fifthanswer": data[i].fifthanswer,
+                                    "firstanswer": data[i].firstanswer,
+                                    "fourthanswer": data[i].fourthanswer,
+                                    "secondanswer": data[i].secondanswer,
+                                    "sixanswer": data[i].sixanswer,
+                                    "sevenhanswer": data[i].sevenhanswer,
+                                    "thirdanswer": {
+                                        "date": date
+                                    }
+                                });
+                            }
                         }
+                        var newdata = newArray.filter(checkAdult);
+                        function checkAdult(object) {
+                            return object.thirdanswer.date == startFormatDate;
+                        }
+                        var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
+                        list += '<th>Paciente</th>';
+                        list += '<th>Staff</th>';
+                        list += '<th>Teléfono</th>';
+                        list += '<th>Hora</th></tr></thead><tbody>';
+                        $.each(newdata, function (i, filterdata) {
+                            let firstanswer = filterdata.firstanswer;
+                            let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
+                            let fifthanswer = filterdata.fifthanswer;
+                            let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
+                            list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>"+ fifthanswer +"</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                            t++;
+                        });
+                        list += "</tbody></table>";
+                        $('#new_list').html(list);
+                    }else{
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i].thirdanswer != undefined) {
+                                var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
+                                newArray.push({
+                                    "firstanswer": data[i].firstanswer,
+                                    "fourthanswer": data[i].fourthanswer,
+                                    "secondanswer": data[i].secondanswer,
+                                    "sixanswer": data[i].sixanswer,
+                                    "sevenhanswer": data[i].sevenhanswer,
+                                    "thirdanswer": {
+                                        "date": date
+                                    }
+                                });
+                            }
+                        }
+                        var newdata = newArray.filter(checkAdult);
+                        function checkAdult(object) {
+                            return object.thirdanswer.date == startFormatDate;
+                        }
+                        var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
+                        list += '<th>Paciente</th>';
+                        list += '<th>Teléfono</th>';
+                        list += '<th>Hora</th></tr></thead><tbody>';
+                        $.each(newdata, function (i, filterdata) {
+                            let firstanswer = filterdata.firstanswer;
+                            let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
+                            let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
+                            list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                            t++;
+                        });
+                        list += "</tbody></table>";
+                        $('#new_list').html(list);
                     }
-                    var newdata = newArray.filter(checkAdult);
-                    function checkAdult(object) {
-                        return object.thirdanswer.date == startFormatDate;
-                    }
-                    var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
-                    list += '<th>Paciente</th>';
-                    list += '<th>Staff</th>';
-                    list += '<th>Teléfono</th>';
-                    list += '<th>Hora</th></tr></thead><tbody>';
-                    $.each(newdata, function (i, filterdata) {
-                        let firstanswer = filterdata.firstanswer;
-                        let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
-                        let fifthanswer = filterdata.fifthanswer;
-                        let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
-                        list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>"+ fifthanswer +"</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
-                        t++;
-                    });
-                    list += "</tbody></table>";
-                    $('#new_list').html(list);
                 },
                 error: function () {
                     console.log('Errors...Something went wrong!!!!');
@@ -150,11 +185,9 @@ $(document).ready(function () {
                     title: 'appointment',
                 },
                 success: function (response) {
-                    //console.log('appoinmentfilterresponse',response);
                     const new_data = [];
                     const newDublicate = [];
                     for (let index = 0; index < response.length; index++) {
-                        // console.log('kajshka',response[index]['thirdanswer']);
                         if (response[index]['thirdanswer']['date'] != undefined) {
                             new_data.push({
                                 date: new Date(response[index]['thirdanswer']['date']).toISOString().slice(0, 10)
@@ -166,10 +199,8 @@ $(document).ready(function () {
                     }
                     const new_data1 = [];
                     if(newDublicate.length > 0){
-                        console.log("new_data",new_data);
                         var clean = newDublicate.filter((newDublicate, index, self) =>
                         index === self.findIndex((t) => (t.date === newDublicate.date)));
-                        console.log("clean",clean);
                         for (let o = 0; o < clean.length; o++) {
                             var countData = new_data.filter(checkDate);
                             function checkDate(object) {
@@ -181,9 +212,57 @@ $(document).ready(function () {
                             });
                         }
                     }
-                    // console.log(new_data);
                     var events = [];
                     $(new_data1).each(function (key, value) {
+                        /*if(new Date().toISOString().slice(0, 10)=='2022-06-02'){
+                            console.log('testofthetest',new Date().toISOString().slice(0, 10));
+                            //var dt = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD');
+                            //$('#selected_date').html(start.format('YYYY-MM-DD'));
+                            //var startFormatDate = start.format('YYYY-MM-DD');
+                            var startFormatDate = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD')
+                            $('#appointment_list').hide();
+                            $('#new_list').show();
+                            var t = 1;
+                            var data = response;
+                            console.log('data>>>>',data);
+                            var newArray = [];
+                            for (let i = 0; i < data.length; i++) {
+                                if (data[i].thirdanswer != undefined) {
+                                    var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
+                                    newArray.push({
+                                        "fifthanswer": data[i].fifthanswer,
+                                        "firstanswer": data[i].firstanswer,
+                                        "fourthanswer": data[i].fourthanswer,
+                                        "secondanswer": data[i].secondanswer,
+                                        "sixanswer": data[i].sixanswer,
+                                        "sevenhanswer": data[i].sevenhanswer,
+                                        "thirdanswer": {
+                                            "date": date
+                                        }
+                                    });
+                                }
+                            }
+                            var newdata = newArray.filter(checkAdult);
+                            function checkAdult(object) {
+                                return object.thirdanswer.date == startFormatDate;
+                            }
+                            console.log('newdata>>>>>>>>>>',newdata);
+                            var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
+                            list += '<th>Paciente</th>';
+                            list += '<th>Staff</th>';
+                            list += '<th>Teléfono</th>';
+                            list += '<th>Hora</th></tr></thead><tbody>';
+                            $.each(newdata, function (i, filterdata) {
+                                let firstanswer = filterdata.firstanswer;
+                                let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
+                                let fifthanswer = filterdata.fifthanswer;
+                                let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
+                                list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>"+ fifthanswer +"</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                                t++;
+                            });
+                            list += "</tbody></table>";
+                            $('#new_list').html(list);
+                        }*/
                         events.push({
                             title: value.total_appointment + ' Appointment',
                             start: value.appointment_date,

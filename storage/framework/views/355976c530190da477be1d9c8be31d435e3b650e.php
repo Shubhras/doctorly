@@ -39,7 +39,7 @@
                                 id="selected_date"><?php //echo date('d M, Y'); ?></label>
                         </h4> -->
                         <h4 class="card-title mb-4"><?php echo e(__('Control De Citas')); ?> | <label
-                                id="selected_date"><?php echo date('d M, Y'); ?></label>
+                                id="selected_date"><?php echo date('2022-06-02'); ?></label>
                         </h4>
                         <div id="appointment_list">
                             <table class="table table-bordered dt-responsive nowrap"
@@ -137,7 +137,7 @@
                                             <?php
                                             $i++;
                                             ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>     -->
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
                                     <?php elseif($role == 'patient'): ?>
                                         <?php $__currentLoopData = $appointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
