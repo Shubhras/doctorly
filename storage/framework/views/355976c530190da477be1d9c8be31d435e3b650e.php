@@ -39,7 +39,7 @@
                                 id="selected_date"><?php //echo date('d M, Y'); ?></label>
                         </h4> -->
                         <h4 class="card-title mb-4"><?php echo e(__('Control De Citas')); ?> | <label
-                                id="selected_date"><?php echo date('2022-06-02'); ?></label>
+                                id="selected_date"><?php echo date('Y-m-d'); ?></label>
                         </h4>
                         <div id="appointment_list">
                             <table class="table table-bordered dt-responsive nowrap"
