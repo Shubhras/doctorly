@@ -176,8 +176,8 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <!-- <p><?php echo e(__("Don't have an account ?")); ?> <a href="<?php echo e(url('register')); ?>"
-                                class="font-weight-medium text-primary"> <?php echo e(__("Sign Up here")); ?></a> </p> -->
+                        <p><?php echo e(__("Don't have an account ?")); ?> <a href="<?php echo e(url('register')); ?>"
+                                class="font-weight-medium text-primary"> <?php echo e(__("Sign Up here")); ?></a> </p>
                         <p>© <?php echo e(date('Y')); ?> <?php echo e("BTC Latam Group"); ?>.</p>
                     </div>
                 </div>

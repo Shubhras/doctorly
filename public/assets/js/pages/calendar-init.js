@@ -3,6 +3,7 @@
  Author: Lndinghub(Themesbrand)
  File: Calendar Init
  */
+
 $(document).ready(function () {
     var date = new Date();
     var d = date.getDate();
@@ -136,6 +137,7 @@ $(document).ready(function () {
                             if (data[i].thirdanswer != undefined) {
                                 var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
                                 newArray.push({
+                                    "fifthanswer": data[i].fifthanswer,
                                     "firstanswer": data[i].firstanswer,
                                     "fourthanswer": data[i].fourthanswer,
                                     "secondanswer": data[i].secondanswer,
@@ -153,13 +155,15 @@ $(document).ready(function () {
                         }
                         var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
                         list += '<th>Paciente</th>';
+                        list += '<th>Staff</th>';
                         list += '<th>Teléfono</th>';
                         list += '<th>Hora</th></tr></thead><tbody>';
                         $.each(newdata, function (i, filterdata) {
                             let firstanswer = filterdata.firstanswer;
                             let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
+                            let fifthanswer = filterdata.fifthanswer;
                             let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
-                            list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                            list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + fifthanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
                             t++;
                         });
                         list += "</tbody></table>";
@@ -262,7 +266,7 @@ $(document).ready(function () {
                                     if (data[i].thirdanswer != undefined) {
                                         var date = moment(data[i].thirdanswer.date).format("YYYY-MM-DD");
                                         newArray.push({
-                                            //"fifthanswer": data[i].fifthanswer,
+                                            "fifthanswer": data[i].fifthanswer,
                                             "firstanswer": data[i].firstanswer,
                                             "fourthanswer": data[i].fourthanswer,
                                             "secondanswer": data[i].secondanswer,
@@ -280,15 +284,15 @@ $(document).ready(function () {
                                 }
                                 var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
                                 list += '<th>Paciente</th>';
-                                // list += '<th>Staff</th>';
+                                list += '<th>Staff</th>';
                                 list += '<th>Teléfono</th>';
                                 list += '<th>Hora</th></tr></thead><tbody>';
                                 $.each(newdata, function (i, filterdata) {
                                     let firstanswer = filterdata.firstanswer;
                                     let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
-                                    //let fifthanswer = filterdata.fifthanswer;
+                                    let fifthanswer = filterdata.fifthanswer;
                                     let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
-                                    list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                                    list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + fifthanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
                                     t++;
                                 });
                                 list += "</tbody></table>";

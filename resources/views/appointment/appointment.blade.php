@@ -52,6 +52,7 @@
                                             <th>{{ __('Doctor Number') }}</th>
                                         @elseif($role == 'doctor')
                                             <th>{{ __('Paciente') }}</th>
+                                            <th>{{ __('Staff') }}</th>
                                             <th>{{ __('Teléfono') }}</th>
                                         @else
                                             <th>{{ __('Paciente') }}</th>

@@ -403,8 +403,6 @@
                 sst.setHours(st[0]);
                 sst.setMinutes(st[1]);
                 var eet = new Date();
-                console.log('sst',sst);
-                console.log('eet',eet);
                 eet.setHours(et[0]);
                 eet.setMinutes(et[1]);
                 if (sst > eet) {
