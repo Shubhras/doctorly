@@ -149,8 +149,7 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <p>{{ __("Don't have an account ?") }} <a href="{{ url('register') }}"
-                                class="font-weight-medium text-primary"> {{ __("Sign Up here") }}</a> </p>
+                        <!-- <p>{{ __("Don't have an account ?") }} <a href="{{ url('register') }}" class="font-weight-medium text-primary"> {{ __("Sign Up here") }}</a> </p> -->
                         <p>© {{ date('Y') }} {{ "BTC Latam Group" }}.</p>
                     </div>
                 </div>

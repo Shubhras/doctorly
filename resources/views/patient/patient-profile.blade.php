@@ -201,7 +201,8 @@
                                             <th>{{ __('Time') }}</th>
                                         </tr>
                                     </thead>
-                                    @if (session()->has('page_limit'))
+                                    <!-- <tbody> -->
+                                    <!-- @if (session()->has('page_limit'))
                                         @php
                                             $per_page = session()->get('page_limit');
                                         @endphp
@@ -220,7 +221,42 @@
                                             <td>{{ $item->appointment_date }}</td>
                                             <td>{{ $item->timeSlot->from . ' to ' . $item->timeSlot->to }}</td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach -->
+                                    <tbody>
+                                        <?php $count= 1;?>
+                                        @foreach ($newData as $item =>$key)
+                                            <tr>
+                                                <td>{{$count}} </td>
+                                                @if(empty($key->fifthanswer))
+                                                <td></td>
+                                                @else
+                                                <td> {{ $key->fifthanswer }} </td>
+                                                @endif
+                                                <?php
+                                                if (empty($key->thirdanswer->date)) {
+                                                    ?> <td></td><?php
+                                                }else{
+                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                    $newDate = date("d-m-Y", strtotime($date1));
+                                                    ?><td> {{$newDate}} </td><?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if (empty($key->thirdanswer->date)) {
+                                                    ?> <td></td><?php
+                                                }else{
+                                                    $date1 = json_decode(json_encode($key->thirdanswer->date), true);
+                                                    $newTime = date("H:i", strtotime($date1));
+                                                    ?><td> {{$newTime}} </td><?php
+                                                }
+                                                ?>
+                                                
+                                                <td> </td>
+                                            </tr>
+                                            <?php
+                                            $count++;
+                                            ?>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <div class="col-md-12 text-center mt-3">

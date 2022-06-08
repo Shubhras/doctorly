@@ -928,6 +928,7 @@ class AppointmentController extends Controller
 
     public function pending_appointment(User $patient)
     {
+        $user = Sentinel::getUser();
         $client = new \GuzzleHttp\Client();
         $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
         $response = $request->getBody()->getContents();
@@ -955,7 +956,6 @@ class AppointmentController extends Controller
             }
             $newData[] = $object;
         }
-        $user = Sentinel::getUser();
         if ($user->hasAccess('appointment.list')) {
             $user_id = Sentinel::getUser()->id;
             $role = $user->roles[0]->slug;
