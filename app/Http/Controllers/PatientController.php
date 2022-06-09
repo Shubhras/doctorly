@@ -50,11 +50,41 @@ class PatientController extends Controller
     public function index()
     {
         $user = Sentinel::getUser();
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
+        $response = $request->getBody()->getContents();
+        $jotform_data = json_decode($response); 
+        $newData = array();
+        foreach($jotform_data->content as $key=> $jotforms_data){
+            $jotform_ans= $jotforms_data->answers;
+            $newData1 = array();
+            $object = new \stdClass();
+            foreach($jotform_ans as $jotform_t_ans){
+                if((isset($jotform_t_ans->answer))){
+                   $newData1[] = array("answer" => $jotform_t_ans->answer);
+                }
+            }
+            // if($newData1[4]['answer'] !=$user->first_name ){
+            //     continue;
+            // }
+            $object->firstanswer = $newData1[0]['answer'];
+            $object->secondanswer = $newData1[1]['answer'];
+            $object->thirdanswer = $newData1[2]['answer'];
+            $object->fourthanswer = $newData1[3]['answer'];
+            $object->fifthanswer = $newData1[4]['answer'];
+            if(!empty($newData1[5]['answer'])){
+            $object->sixanswer = $newData1[5]['answer'];
+            }
+            if(!empty($newData1[6]['answer'])){
+            $object->sevenhanswer = $newData1[6]['answer'];
+            }
+            $newData[] = $object;
+        }
         if ($user->hasAccess('patient.list')) {
             $role = $user->roles[0]->slug;
             $patient_role = Sentinel::findRoleBySlug('patient');
             $patients = $patient_role->users()->with('roles')->where('is_deleted', 0)->orderByDesc('id')->paginate($this->limit);
-            return view('patient.patients', compact('user', 'role', 'patients'));
+            return view('patient.patients', compact('user', 'role', 'patients', 'newData'));
         } else {
              return view('error.403');
 
@@ -140,46 +170,6 @@ class PatientController extends Controller
 
         }
     }
-    
-    // public function patient_data(Request $request)
-    // {
-    //     $user = Sentinel::getUser();
-    //     if ($user->hasAccess('patient_data')) {
-    //         $validatedData = $request->validate([
-    //             'submission_id' => 'required|alpha',
-    //             'formID' => 'required|alpha',
-    //             'clinica' => 'required|numeric|digits:10',
-    //             'typea' => 'required|email|unique:users',
-    //             'staff' => 'required|numeric',
-    //             'fullname4' => 'required',
-    //             'emailaddress' => 'required',
-    //             'appointment' => 'required',
-    //         ]);
-    //         try {
-    //             $user = Sentinel::getUser();
-    //             // Set Default Password for Doctor
-    //             $validatedData['password'] = Config::get('app.DEFAULT_PASSWORD');
-    //             $validatedData['created_by'] = $user->id;
-    //             $validatedData['updated_by'] = $user->id;
-    //             //Create a new user
-    //             $patient = Sentinel::registerAndActivate($validatedData);
-    //             //Attach the user to the role
-    //             $role = Sentinel::findRoleBySlug('patient');
-    //             $role->users()
-    //                 ->attach($patient);
-    //             $validatedData['user_id'] = $patient->id;
-    //             $this->patient_info->create($validatedData);
-    //             //$this->medical_info->create($validatedData);
-    //             return redirect('patient')->with('success', 'Patient created successfully!');
-    //         } catch (Exception $e) {
-    //             return redirect('patient')->with('error', 'Something went wrong!!! ' . $e->getMessage());
-    //         }
-    //     } else {
-    //         return view('error.403');
-
-    //     }
-    // }
-    
     /**
      * Display the specified resource.
      *
@@ -189,6 +179,7 @@ class PatientController extends Controller
     public function show(User $patient)
     {
         $user = Sentinel::getUser();
+        $role = $user->roles[0]->slug;
         $client = new \GuzzleHttp\Client();
         $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
         $response = $request->getBody()->getContents();
@@ -200,24 +191,40 @@ class PatientController extends Controller
             $object = new \stdClass();
             foreach($jotform_ans as $jotform_t_ans){
                 if((isset($jotform_t_ans->answer))){
-                   $newData1[] = array("answer" => $jotform_t_ans->answer);
+                $newData1[] = array("answer" => $jotform_t_ans->answer);
                 }
             }
-            if($newData1[4]['answer'] !=$user->first_name ){
-                continue;
+            if($role=='receptionist' || $role=='admin'){
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                if(!empty($newData1[5]['answer'])){
+                $object->sixanswer = $newData1[5]['answer'];
+                }
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
+
+            }else{
+                if($newData1[4]['answer'] !=$user->first_name ){
+                    continue;
+                }
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                if(!empty($newData1[5]['answer'])){
+                $object->sixanswer = $newData1[5]['answer'];
+                }
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
             }
-            $object->firstanswer = $newData1[0]['answer'];
-            $object->secondanswer = $newData1[1]['answer'];
-            $object->thirdanswer = $newData1[2]['answer'];
-            $object->fourthanswer = $newData1[3]['answer'];
-            $object->fifthanswer = $newData1[4]['answer'];
-            if(!empty($newData1[5]['answer'])){
-            $object->sixanswer = $newData1[5]['answer'];
-            }
-            if(!empty($newData1[6]['answer'])){
-            $object->sevenhanswer = $newData1[6]['answer'];
-            }
-            $newData[] = $object;
         }
         if ($user->hasAccess('patient.view')) {
             $role = $user->roles[0]->slug;
@@ -251,9 +258,7 @@ class PatientController extends Controller
                 return redirect('/')->with('error', 'Patient not found');
             }
         } else {
-
             return view('error.403');
-
         }
     }
 
