@@ -33,8 +33,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="<?php echo e(url('patient')); ?>"
                                     class="dropdown-item"><?php echo e(__('Lista de Patients')); ?></a>
-                                <a href="<?php echo e(route('patient.create')); ?>"
-                                    class="dropdown-item"><?php echo e(__('Agregar nuevo Patient')); ?></a>
+                                <!-- <a href="<?php echo e(route('patient.create')); ?>"
+                                    class="dropdown-item"><?php echo e(__('Agregar nuevo Patient1')); ?></a> -->
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -78,8 +78,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="<?php echo e(url('patient')); ?>"
                                     class="dropdown-item"><?php echo e(__('Lista de Pacientes')); ?></a>
-                                <a href="<?php echo e(route('patient.create')); ?>"
-                                    class="dropdown-item"><?php echo e(__('Agregar Nuevo Paciente')); ?></a>
+                                <!-- <a href="<?php echo e(route('patient.create')); ?>"
+                                    class="dropdown-item"><?php echo e(__('Agregar Nuevo Paciente')); ?></a> -->
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -144,8 +144,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="<?php echo e(url('patient')); ?>"
                                     class="dropdown-item"><?php echo e(__('Lista de Pacientes')); ?></a>
-                                <a href="<?php echo e(route('patient.create')); ?>"
-                                    class="dropdown-item"><?php echo e(__('Agregar Nuevo Paciente')); ?></a>
+                                <!-- <a href="<?php echo e(route('patient.create')); ?>"
+                                    class="dropdown-item"><?php echo e(__('Agregar Nuevo Paciente')); ?></a> -->
                             </div>
                         </li>
                         <li class="nav-item">

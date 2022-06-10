@@ -26,7 +26,7 @@
         </div>
         <!-- end page title -->
         <div class="row">
-            <div class="col-xl-4">
+            <!-- <div class="col-xl-4">
                 <div class="card overflow-hidden">
                     <div class="bg-soft-primary">
                         <div class="row">
@@ -69,7 +69,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- end card -->
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title mb-4"><?php echo e(__('Personal Information')); ?></h4>
@@ -105,9 +104,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- end card -->
-            </div>
-            <div class="col-xl-8">
+            </div> -->
+            <!-- <div class="col-xl-8"> -->
+            <div class="col-xl-12">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mini-stats-wid">
@@ -165,12 +164,12 @@
                     <div class="card-body">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#Medical_info" role="tab">
                                     <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                     <span class="d-none d-sm-block"><?php echo e(__('Medical Information')); ?></span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#AppointmentList" role="tab">
                                     <span class="d-block d-sm-none"><i class="far fa-user"></i></span>

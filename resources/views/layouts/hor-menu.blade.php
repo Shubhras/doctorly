@@ -32,8 +32,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="{{ url('patient') }}"
                                     class="dropdown-item">{{ __('Lista de Patients') }}</a>
-                                <a href="{{ route('patient.create') }}"
-                                    class="dropdown-item">{{ __('Agregar nuevo Patient') }}</a>
+                                <!-- <a href="{{ route('patient.create') }}"
+                                    class="dropdown-item">{{ __('Agregar nuevo Patient1') }}</a> -->
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -74,8 +74,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="{{ url('patient') }}"
                                     class="dropdown-item">{{ __('Lista de Pacientes') }}</a>
-                                <a href="{{ route('patient.create') }}"
-                                    class="dropdown-item">{{ __('Agregar Nuevo Paciente') }}</a>
+                                <!-- <a href="{{ route('patient.create') }}"
+                                    class="dropdown-item">{{ __('Agregar Nuevo Paciente') }}</a> -->
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -135,8 +135,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="{{ url('patient') }}"
                                     class="dropdown-item">{{ __('Lista de Pacientes') }}</a>
-                                <a href="{{ route('patient.create') }}"
-                                    class="dropdown-item">{{ __('Agregar Nuevo Paciente') }}</a>
+                                <!-- <a href="{{ route('patient.create') }}"
+                                    class="dropdown-item">{{ __('Agregar Nuevo Paciente') }}</a> -->
                             </div>
                         </li>
                         <li class="nav-item">

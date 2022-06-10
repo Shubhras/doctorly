@@ -50,6 +50,7 @@ class PatientController extends Controller
     public function index()
     {
         $user = Sentinel::getUser();
+        $role = $user->roles[0]->slug;
         $client = new \GuzzleHttp\Client();
         $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
         $response = $request->getBody()->getContents();
@@ -64,21 +65,36 @@ class PatientController extends Controller
                    $newData1[] = array("answer" => $jotform_t_ans->answer);
                 }
             }
-            // if($newData1[4]['answer'] !=$user->first_name ){
-            //     continue;
-            // }
-            $object->firstanswer = $newData1[0]['answer'];
-            $object->secondanswer = $newData1[1]['answer'];
-            $object->thirdanswer = $newData1[2]['answer'];
-            $object->fourthanswer = $newData1[3]['answer'];
-            $object->fifthanswer = $newData1[4]['answer'];
-            if(!empty($newData1[5]['answer'])){
-            $object->sixanswer = $newData1[5]['answer'];
+            if($role=='receptionist' || $role=='admin'){
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                if(!empty($newData1[5]['answer'])){
+                $object->sixanswer = $newData1[5]['answer'];
+                }
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
+            }else {
+                if($newData1[4]['answer'] !=$user->first_name ){
+                    continue;
+                }
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                if(!empty($newData1[5]['answer'])){
+                $object->sixanswer = $newData1[5]['answer'];
+                }
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
             }
-            if(!empty($newData1[6]['answer'])){
-            $object->sevenhanswer = $newData1[6]['answer'];
-            }
-            $newData[] = $object;
         }
         if ($user->hasAccess('patient.list')) {
             $role = $user->roles[0]->slug;

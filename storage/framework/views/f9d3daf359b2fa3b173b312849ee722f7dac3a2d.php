@@ -15,13 +15,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href=" <?php echo e(route('patient.create')); ?> ">
+                        <!-- <a href=" <?php echo e(route('patient.create')); ?> ">
                             <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                <!-- <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('Pacientes')); ?> -->
                                 <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('Nueva Pacientes')); ?>
 
                             </button>
-                        </a>
+                        </a> -->
                         <table class="table table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
