@@ -18,19 +18,19 @@
                     <div class="card-body">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('today-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-day"></i></span>
                                     <span class="d-none d-sm-block">{{ __("Citas de hoy") }}</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link " href="{{ url('pending-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="far fa-calendar"></i></span>
                                     <span class="d-none d-sm-block">{{ __('Pendientes') }}</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('upcoming-appointment') }}">
                                     <span class="d-block d-sm-none"><i class="fas fa-calendar-week"></i></span>
                                     <span class="d-none d-sm-block">{{ __('Próxima') }}</span>
@@ -47,7 +47,7 @@
                                     <span class="d-block d-sm-none"><i class="fas fa-window-close"></i></span>
                                     <span class="d-none d-sm-block">{{ __('Canceladas') }}</span>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content p-3 text-muted">

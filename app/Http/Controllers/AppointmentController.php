@@ -938,7 +938,8 @@ class AppointmentController extends Controller
                     }
                 }
                 return response()->json($newData);
-            }else{
+            }
+            else{
                 foreach($jotform_data->content as $key=> $jotforms_data){
                     $jotform_ans= $jotforms_data->answers;
                     $newData1 = array();

@@ -36,6 +36,7 @@
         </div>
     @endsection
     @section('content')
+    <div style="display:none;">
         <!-- start page title -->
         @component('components.breadcrumb')
             <!-- @slot('title') Prescription List @endslot -->
@@ -164,6 +165,7 @@
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
+    </div>
     @endsection
     @section('script')
         <!-- Plugins js -->

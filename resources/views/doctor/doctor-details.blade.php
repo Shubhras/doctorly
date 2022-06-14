@@ -103,7 +103,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Email ') }}<span
@@ -118,7 +117,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Título ') }}<span
                                                     class="text-danger">*</span></label>
@@ -131,8 +130,8 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                    </div> -->
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Experiencia ') }}<span
                                                     class="text-danger">*</span></label>
@@ -147,53 +146,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 form-group">
-                                            <label class="control-label d-block">{{ __("Días disponibles ") }}<span
-                                                    class="text-danger">*</span></label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                    value="1" name="sun" {{ old('sun') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox1">Dom</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                    value="1" name="mon" {{ old('mon') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox2">Lun</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                                    value="1" name="tue" {{ old('tue') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox3">Mar</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
-                                                    value="1" name="wen" {{ old('wen') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox4">Mier</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5"
-                                                    value="1" name="thu" {{ old('thu') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox5">Jue</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
-                                                    value="1" name="fri" {{ old('fri') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox6">Vier</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox7"
-                                                    value="1" name="sat" {{ old('sat') ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="inlineCheckbox7">Sab</label>
-                                            </div>
-                                            @error('mon')
-                                                <span class="error d-block " role="alert">
-                                                    <strong>Select any one days</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row">
                                         <div class="col-md-4 form-group">
                                             <label class="control-label">{{ __('Tiempo (en minutos) ') }}<span
@@ -280,7 +233,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Teléfono ') }}<span
                                                     class="text-danger">*</span></label>
@@ -294,8 +247,8 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                    </div> -->
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Grado ') }}<span
                                                     class="text-danger">*</span></label>
@@ -308,8 +261,8 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                    </div> -->
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Tarifa ') }}<span
                                                     class="text-danger">*</span></label>
@@ -319,6 +272,52 @@
                                             @error('fees')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div> -->
+                                    <div class="row">
+                                        <div class="col-md-12 form-group" style="padding-top:8px;margin-bottom:21px;">
+                                            <label class="control-label d-block">{{ __("Días disponibles ") }}<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                                    value="1" name="sun" {{ old('sun') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox1">Dom</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                                    value="1" name="mon" {{ old('mon') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox2">Lun</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                                    value="1" name="tue" {{ old('tue') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox3">Mar</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
+                                                    value="1" name="wen" {{ old('wen') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox4">Mier</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5"
+                                                    value="1" name="thu" {{ old('thu') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox5">Jue</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6"
+                                                    value="1" name="fri" {{ old('fri') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox6">Vier</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox7"
+                                                    value="1" name="sat" {{ old('sat') ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="inlineCheckbox7">Sab</label>
+                                            </div>
+                                            @error('mon')
+                                                <span class="error d-block " role="alert">
+                                                    <strong>Select any one days</strong>
                                                 </span>
                                             @enderror
                                         </div>

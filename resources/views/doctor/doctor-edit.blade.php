@@ -101,7 +101,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Title ') }}<span
                                                     class="text-danger">*</span></label>
@@ -131,7 +131,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row">
                                         @if ($availableDay)
                                             <div class="col-md-12 form-group">
@@ -197,7 +197,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Contact Number ') }}<span
                                                     class="text-danger">*</span></label>
@@ -241,7 +241,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label class="control-label">{{ __('Profile Photo ') }}</label>

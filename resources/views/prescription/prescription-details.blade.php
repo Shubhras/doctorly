@@ -8,6 +8,7 @@
     <body data-topbar="dark" data-layout="horizontal">
     @endsection
     @section('content')
+    <div style="display:none;">
         <!-- start page title -->
         @component('components.breadcrumb')
             <!-- @slot('title')Create Prescription @endslot
@@ -162,6 +163,7 @@
             </div>
         </div>
         <!-- end row -->
+    </div>    
     @endsection
     @section('script')
         <script src="{{ URL::asset('assets/libs/select2/select2.min.js') }}"></script>

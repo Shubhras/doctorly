@@ -30,9 +30,9 @@
                             <thead>
                                 <tr>
                                     <th>{{ __('#') }}</th>
-                                    <th>{{ __('Título') }}</th>
+                                    <!-- <th>{{ __('Título') }}</th> -->
                                     <th>{{ __('Nombre') }}</th>
-                                    <th>{{ __('Teléfono') }}</th>
+                                    <!-- <th>{{ __('Teléfono') }}</th> -->
                                     <th>{{ __('E-Mail') }}</th>
                                     @if ($role != 'patient')
                                         <th>{{ __('Acción') }}</th>
@@ -55,11 +55,11 @@
                                 @foreach ($doctors as $key => $item)
                                     <tr>
                                         <td> {{ $key + 1 + $per_page * ($currentpage - 1) }} </td>
-                                        <td>
+                                        <!-- <td>
                                             {{ $item->doctor['title'] }}
-                                        </td>
+                                        </td> -->
                                         <td> {{ $item->first_name }} {{ $item->last_name }} </td>
-                                        <td> {{ $item->mobile }} </td>
+                                        <!-- <td> {{ $item->mobile }} </td> -->
                                         <td> {{ $item->email }} </td>
                                         @if ($role != 'patient')
                                             <td>

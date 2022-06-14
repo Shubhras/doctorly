@@ -105,7 +105,7 @@
             </div> -->
             <!-- <div class="col-xl-8"> -->
             <div class="col-xl-12">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-4">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="card">
                     <div class="card-body">
                         <!-- Nav tabs -->

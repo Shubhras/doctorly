@@ -100,12 +100,12 @@ class DoctorController extends Controller
                 [
                     'first_name' => 'required|alpha',
                     'last_name' => 'required|alpha',
-                    'mobile' => 'required|numeric|digits:10',
+                    //'mobile' => 'required|numeric|digits:10',
                     'email' => 'required|email|unique:users',
-                    'title' => 'required',
-                    'fees' => 'required',
-                    'degree' => 'required',
-                    'experience' => 'required',
+                    // 'title' => 'required',
+                    // 'fees' => 'required',
+                    // 'degree' => 'required',
+                    // 'experience' => 'required',
                     'slot_time' => 'required',
                     'mon' => 'required_without_all:tue,wen,thu,fri,sat,sun',
                     'tue' => 'required_without_all:mon,wen,thu,fri,sat,sun',
@@ -143,7 +143,7 @@ class DoctorController extends Controller
                     $role->users()->attach($doctor);
                     $doctor_details = new Doctor();
                     $doctor_details->user_id = $doctor->id;
-                    $doctor_details->title = $request->title;
+                    //$doctor_details->title = $request->title;
                     $doctor_details->degree = $request->degree;
                     $doctor_details->experience = $request->experience;
                     $doctor_details->fees = $request->fees;
@@ -308,12 +308,12 @@ class DoctorController extends Controller
             $validatedData = $request->validate([
                 'first_name' => 'required|alpha',
                 'last_name' => 'required|alpha',
-                'mobile' => 'required|numeric|digits:10',
+                //'mobile' => 'required|numeric|digits:10',
                 'email' => 'required|email',
-                'title' => 'required',
-                'fees' => 'required',
-                'degree' => 'required',
-                'experience' => 'required',
+                // 'title' => 'required',
+                // 'fees' => 'required',
+                // 'degree' => 'required',
+                // 'experience' => 'required',
                 'mon' => 'required_without_all:tue,wen,thu,fri,sat,sun',
                 'tue' => 'required_without_all:mon,wen,thu,fri,sat,sun',
                 'wen' => 'required_without_all:mon,tue,thu,fri,sat,sun',
@@ -339,17 +339,17 @@ class DoctorController extends Controller
                 }
                 $doctor->first_name = $validatedData['first_name'];
                 $doctor->last_name = $validatedData['last_name'];
-                $doctor->mobile = $validatedData['mobile'];
+                //$doctor->mobile = $validatedData['mobile'];
                 $doctor->email = $validatedData['email'];
                 $doctor->updated_by = $user->id;
                 $doctor->save();
-                Doctor::where('user_id', $doctor->id)
-                    ->update([
-                        'title' => $validatedData['title'],
-                        'degree' => $validatedData['degree'],
-                        'experience' => $validatedData['experience'],
-                        'fees' => $validatedData['fees'],
-                    ]);
+                // Doctor::where('user_id', $doctor->id)
+                //     ->update([
+                //         'title' => $validatedData['title'],
+                //         'degree' => $validatedData['degree'],
+                //         'experience' => $validatedData['experience'],
+                //         'fees' => $validatedData['fees'],
+                //     ]);
                 $availableDay = DoctorAvailableDay::where('doctor_id', $doctor->id)->first();
                 $availableDay->doctor_id = $doctor->id;
                 if ($availableDay->mon = $request->mon !== Null) {
