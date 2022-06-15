@@ -127,11 +127,11 @@
                             </a>
                         </li> -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
+                            <!-- <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-user-circle mr-2"></i>{{ __('Pacientes') }} <div
                                     class="arrow-down"></div>
-                            </a>
+                            </a> -->
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topnav-layout">
                                 <a href="{{ url('patient') }}"
                                     class="dropdown-item">{{ __('Lista de Pacientes') }}</a>

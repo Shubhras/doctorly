@@ -150,7 +150,6 @@ $(document).ready(function () {
                     title: 'appointment',
                 },
                 success: function (response) {
-                    console.log('responseahsgfv',response);
                     const new_data = [];
                     const newDublicate = [];
                     for (let index = 0; index < response.length; index++) {
