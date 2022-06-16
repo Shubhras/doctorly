@@ -56,6 +56,12 @@ class PatientController extends Controller
         $response = $request->getBody()->getContents();
         $jotform_data = json_decode($response); 
         $newData = array();
+        $firstName=$user->first_name;
+        $lastName=$user->last_name;
+        if($lastName!='')
+        $doctorusername = $firstName.' ' .$lastName;
+        else
+        $doctorusername = $firstName;
         foreach($jotform_data->content as $key=> $jotforms_data){
             $jotform_ans= $jotforms_data->answers;
             $newData1 = array();
@@ -79,7 +85,7 @@ class PatientController extends Controller
                 }
                 $newData[] = $object;
             }else {
-                if($newData1[4]['answer'] !=$user->first_name ){
+                if($newData1[4]['answer'] !=$doctorusername ){
                     continue;
                 }
                 $object->firstanswer = $newData1[0]['answer'];
@@ -201,6 +207,12 @@ class PatientController extends Controller
         $response = $request->getBody()->getContents();
         $jotform_data = json_decode($response); 
         $newData = array();
+        $firstName=$user->first_name;
+        $lastName=$user->last_name;
+        if($lastName!='')
+        $doctorusername = $firstName.' ' .$lastName;
+        else
+        $doctorusername = $firstName;
         foreach($jotform_data->content as $key=> $jotforms_data){
             $jotform_ans= $jotforms_data->answers;
             $newData1 = array();
@@ -225,7 +237,7 @@ class PatientController extends Controller
                 $newData[] = $object;
 
             }else{
-                if($newData1[4]['answer'] !=$user->first_name ){
+                if($newData1[4]['answer'] !=$doctorusername ){
                     continue;
                 }
                 $object->firstanswer = $newData1[0]['answer'];

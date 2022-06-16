@@ -886,39 +886,21 @@ class AppointmentController extends Controller
                         $newData1[] = array("answer" => $jotform_t_ans->answer);
                         }
                     }
-                    // if($role=='receptionist' || $role=='admin'){
-                    //     $object->firstanswer = $newData1[0]['answer'];
-                    //     $object->secondanswer = $newData1[1]['answer'];
-                    //     $object->thirdanswer = $newData1[2]['answer'];
-                    //     $object->fourthanswer = $newData1[3]['answer'];
-                    //     $object->fifthanswer = $newData1[4]['answer'];
-                    //     if(!empty($newData1[5]['answer'])){
-                    //         $object->sixanswer = $newData1[5]['answer'];
-                    //         }
-                    //         if(!empty($newData1[6]['answer'])){
-                    //         $object->sevenhanswer = $newData1[6]['answer'];
-                    //         }
-                    //     $newData[] = $object;
-
-                    // }
-                    // else{
-                        if($newData1[4]['answer'] !=$doctorusername){
-                            continue;
+                    if($newData1[4]['answer'] !=$doctorusername){
+                        continue;
+                    }
+                    $object->firstanswer = $newData1[0]['answer'];
+                    $object->secondanswer = $newData1[1]['answer'];
+                    $object->thirdanswer = $newData1[2]['answer'];
+                    $object->fourthanswer = $newData1[3]['answer'];
+                    $object->fifthanswer = $newData1[4]['answer'];
+                    if(!empty($newData1[5]['answer'])){
+                        $object->sixanswer = $newData1[5]['answer'];
                         }
-                        $object->firstanswer = $newData1[0]['answer'];
-                        $object->secondanswer = $newData1[1]['answer'];
-                        $object->thirdanswer = $newData1[2]['answer'];
-                        $object->fourthanswer = $newData1[3]['answer'];
-                        $object->fifthanswer = $newData1[4]['answer'];
-                        if(!empty($newData1[5]['answer'])){
-                            $object->sixanswer = $newData1[5]['answer'];
-                            }
-                            if(!empty($newData1[6]['answer'])){
-                            $object->sevenhanswer = $newData1[6]['answer'];
-                            }
-                        $newData[] = $object;
-
-                    // }
+                        if(!empty($newData1[6]['answer'])){
+                        $object->sevenhanswer = $newData1[6]['answer'];
+                        }
+                    $newData[] = $object;
                 }
                 return response()->json($newData);
             }
@@ -932,37 +914,18 @@ class AppointmentController extends Controller
                         $newData1[] = array("answer" => $jotform_t_ans->answer);
                         }
                     }
-                    // if($role=='receptionist' || $role=='admin'){
-                        $object->firstanswer = $newData1[0]['answer'];
-                        $object->secondanswer = $newData1[1]['answer'];
-                        $object->thirdanswer = $newData1[2]['answer'];
-                        $object->fourthanswer = $newData1[3]['answer'];
-                        $object->fifthanswer = $newData1[4]['answer'];
-                        if(!empty($newData1[5]['answer'])){
-                            $object->sixanswer = $newData1[5]['answer'];
-                            }
-                            if(!empty($newData1[6]['answer'])){
-                            $object->sevenhanswer = $newData1[6]['answer'];
-                            }
-                        $newData[] = $object;
-                    // }
-                    // else{
-                    //     if($newData1[4]['answer'] !=$user->first_name ){
-                    //         continue;
-                    //     }
-                    //     $object->firstanswer = $newData1[0]['answer'];
-                    //     $object->secondanswer = $newData1[1]['answer'];
-                    //     $object->thirdanswer = $newData1[2]['answer'];
-                    //     $object->fourthanswer = $newData1[3]['answer'];
-                    //     $object->fifthanswer = $newData1[4]['answer'];
-                    //     if(!empty($newData1[5]['answer'])){
-                    //         $object->sixanswer = $newData1[5]['answer'];
-                    //         }
-                    //         if(!empty($newData1[6]['answer'])){
-                    //         $object->sevenhanswer = $newData1[6]['answer'];
-                    //         }
-                    //     $newData[] = $object;
-                    // }
+                    $object->firstanswer = $newData1[0]['answer'];
+                    $object->secondanswer = $newData1[1]['answer'];
+                    $object->thirdanswer = $newData1[2]['answer'];
+                    $object->fourthanswer = $newData1[3]['answer'];
+                    $object->fifthanswer = $newData1[4]['answer'];
+                    if(!empty($newData1[5]['answer'])){
+                        $object->sixanswer = $newData1[5]['answer'];
+                        }
+                        if(!empty($newData1[6]['answer'])){
+                        $object->sevenhanswer = $newData1[6]['answer'];
+                        }
+                    $newData[] = $object;
                 }
                 return response()->json($newData);
             }
