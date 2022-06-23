@@ -266,7 +266,7 @@ $(document).ready(function () {
                             }
                         }
                         events.push({
-                            title: value.total_appointment + ' Appointment',
+                            title: value.total_appointment + ' Appt.',
                             start: value.appointment_date,
                             end: value.appointment_date,
                             className: 'bg-success text-white',
