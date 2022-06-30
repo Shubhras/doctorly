@@ -40,6 +40,7 @@ Route::get('profile-view', 'UserController@profile_view');
 Route::resource('user', 'UserController');
 Route::resource('doctor', 'DoctorController');
 Route::resource('patient', 'PatientController');
+Route::get('patients-view/{email}', 'PatientController@patients_view');
 Route::resource('receptionist', 'ReceptionistController');
 Route::resource('appointment', 'AppointmentController');
 Route::resource('prescription', 'PrescriptionController');

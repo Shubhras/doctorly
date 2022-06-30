@@ -1,66 +1,67 @@
-@extends('layouts.master-layouts')
-@section('title') {{ __('List of Patients') }} @endsection
-@section('body')
+<?php $__env->startSection('title'); ?> <?php echo e(__('List of Patients')); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
 
 <body data-topbar="dark" data-layout="horizontal">
-    @endsection
-    @section('content')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('content'); ?>
     <!-- start page title -->
-    @component('components.breadcrumb')
-    @slot('title') Pacientes @endslot
-    @slot('li_1') Dashboard @endslot
-    @slot('li_2') Paciente @endslot
-    @endcomponent
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+    <?php $__env->slot('title'); ?> Pacientes <?php $__env->endSlot(); ?>
+    <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
+    <?php $__env->slot('li_2'); ?> Paciente <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
     <!-- end page title -->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <!-- <a href=" {{ route('patient.create') }} ">
+                    <!-- <a href=" <?php echo e(route('patient.create')); ?> ">
                             <button type="button" class="btn btn-primary waves-effect waves-light mb-4">
-                                <i class="bx bx-plus font-size-16 align-middle mr-2"></i> {{ __('Nueva Pacientes') }}
+                                <i class="bx bx-plus font-size-16 align-middle mr-2"></i> <?php echo e(__('Nueva Pacientes')); ?>
+
                             </button>
                         </a> -->
                     <table class="table table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th>{{ __('#') }}</th>
-                                <th>{{ __('Nombre') }}</th>
-                                <th>{{ __('Teléfono') }}</th>
-                                <th>{{ __('E-Mail') }}</th>
-                                <th>{{ __('Acción') }}</th>
+                                <th><?php echo e(__('#')); ?></th>
+                                <th><?php echo e(__('Nombre')); ?></th>
+                                <th><?php echo e(__('Teléfono')); ?></th>
+                                <th><?php echo e(__('E-Mail')); ?></th>
+                                <th><?php echo e(__('Acción')); ?></th>
                             </tr>
                         </thead>
                         <!-- <tbody>
-                                @if (session()->has('page_limit'))
-                                    @php
+                                <?php if(session()->has('page_limit')): ?>
+                                    <?php
                                         $per_page = session()->get('page_limit');
-                                    @endphp
-                                @else
-                                    @php
+                                    ?>
+                                <?php else: ?>
+                                    <?php
                                         $per_page = Config::get('app.page_limit');
-                                    @endphp
-                                @endif
-                                @php
+                                    ?>
+                                <?php endif; ?>
+                                <?php
                                     $currentpage = $patients->currentPage();
-                                @endphp
-                                @foreach ($patients as $patient)
+                                ?>
+                                <?php $__currentLoopData = $patients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $patient): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td>{{ $loop->index + 1 + $per_page * ($currentpage - 1) }}</td>
-                                        <td><a href="{{ url('patient/' . $patient->id) }}">{{ $patient->first_name }}
-                                                {{ $patient->last_name }}</a></td>
-                                        <td>{{ $patient->mobile }}</td>
-                                        <td>{{ $patient->email }}</td>
+                                        <td><?php echo e($loop->index + 1 + $per_page * ($currentpage - 1)); ?></td>
+                                        <td><a href="<?php echo e(url('patient/' . $patient->id)); ?>"><?php echo e($patient->first_name); ?>
+
+                                                <?php echo e($patient->last_name); ?></a></td>
+                                        <td><?php echo e($patient->mobile); ?></td>
+                                        <td><?php echo e($patient->email); ?></td>
                                         <td>
-                                            <a href="{{ url('patient/' . $patient->id) }}">
+                                            <a href="<?php echo e(url('patient/' . $patient->id)); ?>">
                                                 <button type="button"
                                                     class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                                     title="View Profile">
                                                     <i class="mdi mdi-eye"></i>
                                                 </button>
                                             </a>
-                                            <a href="{{ url('patient/' . $patient->id . '/edit') }}">
+                                            <a href="<?php echo e(url('patient/' . $patient->id . '/edit')); ?>">
                                                 <button type="button"
                                                     class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                                     title="Update Profile">
@@ -70,14 +71,14 @@
                                             <a href=" javascript:void(0)">
                                                 <button type="button"
                                                     class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
-                                                    title="Deactivate Profile" data-id="{{ $patient->id }}"
+                                                    title="Deactivate Profile" data-id="<?php echo e($patient->id); ?>"
                                                     id="delete-patient">
                                                     <i class="mdi mdi-trash-can"></i>
                                                 </button>
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody> -->
 
                         <tbody>
@@ -93,43 +94,43 @@
                                     $uniqueArry[] = $item;
                                 }
                             ?>
-                            @foreach ($uniqueArry as $item => $key)
+                            <?php $__currentLoopData = $uniqueArry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item => $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php 
                                 //print_r($i);
                                 //if(writeMsg($newData, $key->secondanswer) == true){
                                 ?>
                             <tr>
 
-                                <td>{{$count}} </td>
-                                @if(empty($key->firstanswer))
+                                <td><?php echo e($count); ?> </td>
+                                <?php if(empty($key->firstanswer)): ?>
                                 <td></td>
-                                @else
-                                <td> {{ $key->firstanswer }} </td>
-                                @endif
+                                <?php else: ?>
+                                <td> <?php echo e($key->firstanswer); ?> </td>
+                                <?php endif; ?>
                                 <?php 
                                         if(empty($key->sevenhanswer->phone)){
                                             ?><td></td><?php
                                         }else{
                                             $area = json_decode(json_encode($key->sevenhanswer->area), true);
                                             $phone_no = json_decode(json_encode($key->sevenhanswer->phone), true);
-                                            ?><td> ({{$area}}){{$phone_no}} </td><?php
+                                            ?><td> (<?php echo e($area); ?>)<?php echo e($phone_no); ?> </td><?php
                                         }?>
-                                @if(empty($key->secondanswer))
+                                <?php if(empty($key->secondanswer)): ?>
                                 <td></td>
-                                @else
-                                <td> {{ $key->secondanswer }}</td>
+                                <?php else: ?>
+                                <td> <?php echo e($key->secondanswer); ?></td>
                                 <?php $email=($key->secondanswer);?>
-                                @endif
+                                <?php endif; ?>
                                 <td>
-                                    <a href="{{ url('patients-view/' . $email) }}">
-                                    <!-- <a href="{{ url('patient/' . $patient->id) }}"> -->
+                                    <a href="<?php echo e(url('patients-view/' . $email)); ?>">
+                                    <!-- <a href="<?php echo e(url('patient/' . $patient->id)); ?>"> -->
                                         <button type="button"
                                             class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                             title="View Profile">
                                             <i class="mdi mdi-eye"></i>
                                         </button>
                                     </a>
-                                    <!-- <a href="{{ url('patient/' . $patient->id . '/edit') }}">
+                                    <!-- <a href="<?php echo e(url('patient/' . $patient->id . '/edit')); ?>">
                                                 <button type="button"
                                                     class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
                                                     title="Update Profile">
@@ -139,7 +140,7 @@
                                             <a href=" javascript:void(0)">
                                                 <button type="button"
                                                     class="btn btn-primary btn-sm btn-rounded waves-effect waves-light mb-2 mb-md-0"
-                                                    title="Deactivate Profile" data-id="{{ $patient->id }}"
+                                                    title="Deactivate Profile" data-id="<?php echo e($patient->id); ?>"
                                                     id="delete-patient">
                                                     <i class="mdi mdi-trash-can"></i>
                                                 </button>
@@ -150,30 +151,31 @@
                                     $count++;
                                // }
                                     ?>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php //print_r($arr);?>
                         </tbody>
                     </table>
                     <!-- <div class="col-md-12 text-center mt-3">
                             <div class="d-flex justify-content-start">
-                                Showing {{ $patients->firstItem() }} to {{ $patients->lastItem() }} of
-                                {{ $patients->total() }} entries
+                                Showing <?php echo e($patients->firstItem()); ?> to <?php echo e($patients->lastItem()); ?> of
+                                <?php echo e($patients->total()); ?> entries
                             </div>
                             <div class="d-flex justify-content-end">
-                                {{ $patients->links() }}
+                                <?php echo e($patients->links()); ?>
+
                             </div>
                         </div> -->
                 </div>
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
-    @endsection
-    @section('script')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('script'); ?>
     <!-- Plugins js -->
-    <script src="{{ URL::asset('assets/libs/jszip/jszip.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/jszip/jszip.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/libs/pdfmake/pdfmake.min.js')); ?>"></script>
     <!-- Init js-->
-    <script src="{{ URL::asset('assets/js/pages/notification.init.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/js/pages/notification.init.js')); ?>"></script>
     <script>
     $(document).on('click', '#delete-patient', function() {
         var id = $(this).data('id');
@@ -182,7 +184,7 @@
                 type: "DELETE",
                 url: 'patient/' + id,
                 data: {
-                    _token: '{{ csrf_token() }}',
+                    _token: '<?php echo e(csrf_token()); ?>',
                     id: id,
                 },
                 beforeSend: function() {
@@ -206,4 +208,5 @@
         }
     });
     </script>
-    @endsection
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master-layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/doctorly/resources/views/patient/patients.blade.php ENDPATH**/ ?>

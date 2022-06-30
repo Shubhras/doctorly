@@ -69,6 +69,7 @@ class PatientController extends Controller
             foreach($jotform_ans as $jotform_t_ans){
                 if((isset($jotform_t_ans->answer))){
                    $newData1[] = array("answer" => $jotform_t_ans->answer);
+
                 }
             }
             if($role=='receptionist' || $role=='admin'){
@@ -279,15 +280,79 @@ class PatientController extends Controller
                     ];
                     return view('patient.patient-profile', compact('user', 'role', 'patient', 'patient_info', 'medical_Info', 'data', 'appointments', 'prescriptions', 'invoices', 'newData'));
                     //return view('patient.patient-profile', compact('user', 'role', 'patient', 'patient_info', 'data', 'appointments', 'prescriptions', 'invoices'));
-                } else {
+                } 
+                else {
                     return redirect('/')->with('error', 'Patient information  not found, update patient information');
                 }
-            } else {
+            } 
+            else {
                 return redirect('/')->with('error', 'Patient not found');
             }
         } else {
             return view('error.403');
         }
+    }
+    public function patients_view($email)
+    {
+        $user = Sentinel::getUser();
+        $patient_email=$email;
+        $role = $user->roles[0]->slug;
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('https://hipaa-api.jotform.com/form/221204886365054/submissions?apiKey=d3de8d5f93a6dd8c2a1e9ed5dc022579');
+        $response = $request->getBody()->getContents();
+        $jotform_data = json_decode($response); 
+        $newData = array();
+        $firstName=$user->first_name;
+        $lastName=$user->last_name;
+        if($lastName!='')
+        $doctorusername = $firstName.' ' .$lastName;
+        else
+        $doctorusername = $firstName;
+        foreach($jotform_data->content as $key=> $jotforms_data){
+            $jotform_ans= $jotforms_data->answers;
+            $newData1 = array();
+            $object = new \stdClass();
+            foreach($jotform_ans as $jotform_t_ans){
+                if((isset($jotform_t_ans->answer))){
+                $newData1[] = array("answer" => $jotform_t_ans->answer);
+                }
+            }
+            if($role=='receptionist' || $role=='admin'){
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                if(!empty($newData1[5]['answer'])){
+                $object->sixanswer = $newData1[5]['answer'];
+                }
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
+
+            }else{
+                if($newData1[4]['answer'] !=$doctorusername ){
+                    continue;
+                }
+                $object->firstanswer = $newData1[0]['answer'];
+                $object->secondanswer = $newData1[1]['answer'];
+                $object->thirdanswer = $newData1[2]['answer'];
+                $object->fourthanswer = $newData1[3]['answer'];
+                $object->fifthanswer = $newData1[4]['answer'];
+                if(!empty($newData1[5]['answer'])){
+                $object->sixanswer = $newData1[5]['answer'];
+                }
+                if(!empty($newData1[6]['answer'])){
+                $object->sevenhanswer = $newData1[6]['answer'];
+                }
+                $newData[] = $object;
+            }
+        }
+            $role = $user->roles[0]->slug;
+            
+        return view('patient.patient-profile', compact('user', 'role','newData','patient_email'));
+                    
     }
 
     /**
