@@ -108,7 +108,8 @@ $(document).ready(function () {
                                 "sevenhanswer": data[i].sevenhanswer,
                                 "thirdanswer": {
                                     "date": date
-                                }
+                                },
+                                "time": data[i].thirdanswer
                             });
                         }
                     }
@@ -116,17 +117,31 @@ $(document).ready(function () {
                     function checkDate(object) {
                         return object.thirdanswer.date == startFormatDate;
                     }
-                    var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr><th>No Señor.</th>';
+                    var list = '<table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;"><thead class="thead-light"><tr>';
                     list += '<th>Paciente</th>';
                     list += '<th>Staff</th>';
                     list += '<th>Teléfono</th>';
+                    list += '<th>Fecha</th>';
                     list += '<th>Hora</th></tr></thead><tbody>';
                     $.each(newdata, function (i, filterdata) {
                         let firstanswer = filterdata.firstanswer;
                         let sevenhanswer = filterdata.sevenhanswer == undefined ? "" : filterdata.sevenhanswer.phone;
                         let fifthanswer = filterdata.fifthanswer;
                         let thirdanswer = filterdata.thirdanswer == undefined ? "" : filterdata.thirdanswer.date;
-                        list += "<tr><td>" + t + "</td><td>" + firstanswer + "</td><td>" + fifthanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td>";
+                        let datetime = filterdata.time;
+                        let time = datetime.date;
+                        let hours = new Date(time).getHours();
+                        let minutes = new Date(time).getMinutes();
+                        let hours_length = hours.toString().length;
+                        let minutes_length = minutes.toString().length;
+                        console.log('minutes_length', minutes_length);
+                        if (minutes_length >= 2) {
+                            const newtime = hours + ':' + minutes;
+                            list += "<tr><td>" + firstanswer + "</td><td>" + fifthanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td><td>" + newtime + "</td>";
+                        } else {
+                            const newtime = hours + ':0' + minutes;
+                            list += "<tr><td>" + firstanswer + "</td><td>" + fifthanswer + "</td><td>" + sevenhanswer + "</td><td>" + thirdanswer + "</td><td>" + newtime + "</td>";
+                        }
                         t++;
                     });
                     list += "</tbody></table>";
